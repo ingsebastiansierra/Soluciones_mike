@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <!-- Fondo -->
+  <rect width="400" height="300" fill="#f0f0f0"/>
+  
+  <!-- Poste de barbero -->
+  <rect x="150" y="50" width="40" height="200" fill="#ffffff" stroke="#333" stroke-width="2"/>
+  
+  <!-- Franjas del poste -->
+  <rect x="150" y="70" width="40" height="20" fill="#e74c3c"/>
+  <rect x="150" y="110" width="40" height="20" fill="#e74c3c"/>
+  <rect x="150" y="150" width="40" height="20" fill="#e74c3c"/>
+  <rect x="150" y="190" width="40" height="20" fill="#e74c3c"/>
+  
+  <rect x="150" y="90" width="40" height="20" fill="#3498db"/>
+  <rect x="150" y="130" width="40" height="20" fill="#3498db"/>
+  <rect x="150" y="170" width="40" height="20" fill="#3498db"/>
+  <rect x="150" y="210" width="40" height="20" fill="#3498db"/>
+  
+  <!-- Base del poste -->
+  <rect x="140" y="250" width="60" height="10" fill="#333"/>
+  
+  <!-- Tijeras -->
+  <g transform="translate(250, 150) rotate(30)">
+    <!-- Mango 1 -->
+    <rect x="-10" y="-60" width="20" height="50" rx="5" fill="#333"/>
+    
+    <!-- Mango 2 -->
+    <rect x="-10" y="10" width="20" height="50" rx="5" fill="#333"/>
+    
+    <!-- Cuchillas -->
+    <path d="M 0,-10 L 60,30 L 55,35 L -5,-5 Z" fill="#777"/>
+    <path d="M 0,10 L 60,-30 L 55,-35 L -5,5 Z" fill="#777"/>
+    
+    <!-- Tornillo -->
+    <circle cx="0" cy="0" r="8" fill="#555"/>
+    <circle cx="0" cy="0" r="3" fill="#999"/>
+  </g>
+  
+  <!-- Texto -->
+  <text x="200" y="280" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">Barbería</text>
+</svg>

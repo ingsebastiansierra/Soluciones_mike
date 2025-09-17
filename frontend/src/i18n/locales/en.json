@@ -1,0 +1,429 @@
+{
+  "common": {
+    "language": "Language",
+    "english": "English",
+    "spanish": "Spanish",
+    "menu": {
+      "home": "Home",
+      "projects": "Projects",
+      "pricing": "Pricing",
+      "specs": "Specifications",
+      "contact": "Contact"
+    },
+    "cta": {
+      "contact": "Contact me",
+      "seeProjects": "See projects",
+      "learnMore": "Learn more"
+    },
+    "viewProject": "View project",
+    "learnMore": "Learn more"
+  },
+  "pricing": {
+    "title": "Our Pricing Plans",
+    "subtitle": "Choose the perfect plan for your project needs. All plans include responsive design and SEO optimization.",
+    "perProject": "per project",
+    "selectPlan": "Select Plan",
+    "mostPopular": "Most Popular",
+    "plans": {
+      "basic": {
+        "name": "Basic",
+        "description": "Perfect for small businesses and personal projects",
+        "features": {
+          "0": "Responsive design",
+          "1": "Up to 5 pages",
+          "2": "Contact form",
+          "3": "Basic SEO optimization",
+          "4": "1 month of support"
+        }
+      },
+      "professional": {
+        "name": "Professional",
+        "description": "Ideal for growing businesses and e-commerce",
+        "features": {
+          "0": "Everything in Basic",
+          "1": "E-commerce functionality",
+          "2": "Up to 10 pages",
+          "3": "Content Management System",
+          "4": "Advanced SEO optimization",
+          "5": "3 months of support",
+          "6": "Performance optimization"
+        }
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "For large businesses with complex requirements",
+        "features": {
+          "0": "Everything in Professional",
+          "1": "Unlimited pages",
+          "2": "Custom functionality",
+          "3": "Database integration",
+          "4": "API development",
+          "5": "Advanced analytics",
+          "6": "6 months of support",
+          "7": "Priority response"
+        }
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find answers to common questions about our services and pricing.",
+      "items": {
+        "1": {
+          "question": "What is included in the initial consultation?",
+          "answer": "Our initial consultation includes a thorough discussion of your project requirements, goals, timeline, and budget. We'll provide recommendations and a detailed proposal tailored to your needs."
+        },
+        "2": {
+          "question": "How long does it take to complete a website?",
+          "answer": "Project timelines vary depending on complexity. A basic website typically takes 2-4 weeks, while more complex projects with custom functionality may take 6-12 weeks or more."
+        },
+        "3": {
+          "question": "Do you offer ongoing maintenance services?",
+          "answer": "Yes, we offer various maintenance packages to keep your website secure, updated, and performing optimally. These can be added to any of our plans."
+        },
+        "4": {
+          "question": "Can I upgrade my plan later?",
+          "answer": "Absolutely! You can upgrade your plan at any time as your business grows and needs evolve. We'll help you transition smoothly to a more comprehensive solution."
+        },
+        "5": {
+          "question": "Do you provide hosting services?",
+          "answer": "Yes, we offer reliable hosting solutions optimized for performance and security. However, if you prefer to use your own hosting provider, we can accommodate that as well."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Start Your Project?",
+      "subtitle": "Contact us today for a free consultation and let's bring your vision to life.",
+      "button": "Get in Touch"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "Have a question or ready to start your project? Reach out to us and we'll get back to you as soon as possible.",
+    "form": {
+      "title": "Send us a Message",
+      "name": "Your Name",
+      "email": "Email Address",
+      "phone": "Phone Number (Optional)",
+      "subject": "Subject",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "successMessage": "Thank you! Your message has been sent successfully. We'll get back to you shortly."
+    },
+    "info": {
+      "title": "Contact Information",
+      "phone": {
+        "title": "Phone",
+        "value": "+1 (555) 123-4567"
+      },
+      "email": {
+        "title": "Email",
+        "value": "info@solucionesmike.com"
+      },
+      "address": {
+        "title": "Address",
+        "value": "123 Web Development St, Tech City, TC 12345"
+      }
+    },
+    "hours": {
+      "title": "Business Hours",
+      "weekdays": {
+        "days": "Monday - Friday",
+        "hours": "9:00 AM - 6:00 PM"
+      },
+      "saturday": {
+        "days": "Saturday",
+        "hours": "10:00 AM - 4:00 PM"
+      },
+      "sunday": {
+        "days": "Sunday",
+        "hours": "Closed"
+      }
+    },
+    "map": {
+      "placeholder": "Google Map will be integrated here"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "High-quality web and mobile development",
+      "subtitle": "Custom digital solutions for your business",
+      "description": "I design and develop web and mobile applications with the latest technologies to create exceptional digital experiences.",
+      "imageAlt": "Web and mobile development image",
+      "cta": {
+        "projects": "View projects",
+        "contact": "Contact me"
+      }
+    },
+    "services": {
+      "title": "Services",
+      "subtitle": "Professional solutions for your digital needs",
+      "items": {
+        "1": {
+          "title": "Web Development",
+          "description": "Modern, fast, and responsive websites with the best UX/UI practices."
+        },
+        "2": {
+          "title": "Mobile Development",
+          "description": "Native and cross-platform applications for iOS and Android with fluid experiences."
+        },
+        "3": {
+          "title": "Backend Development",
+          "description": "Robust APIs, optimized databases, and scalable architectures."
+        }
+      }
+    },
+    "projects": {
+      "title": "Featured projects",
+      "subtitle": "Some of my most recent work",
+      "imageAlt": "Project image",
+      "viewAll": "View all projects",
+      "items": {
+        "1": {
+          "title": "Modern E-commerce",
+          "description": "Online store with attractive design and optimized user experience."
+        },
+        "2": {
+          "title": "Management Application",
+          "description": "Comprehensive system for business resource management."
+        },
+        "3": {
+          "title": "Educational Platform",
+          "description": "Digital solution for online courses and educational content management."
+        }
+      }
+    },
+    "testimonials": {
+      "title": "Testimonials",
+      "subtitle": "What my clients say",
+      "items": {
+        "1": {
+          "name": "Maria Garcia",
+          "company": "Innovative Company LLC",
+          "text": "Working with Mike has been an exceptional experience. He perfectly understood our needs and delivered a product that exceeded our expectations."
+        },
+        "2": {
+          "name": "Carlos Rodriguez",
+          "company": "Digital Startup",
+          "text": "The attention to detail and quality of work are impressive. Our application has received very positive feedback from users."
+        },
+        "3": {
+          "name": "Laura Martinez",
+          "company": "Technology Consulting",
+          "text": "Professional, efficient, and creative. The development process was transparent, and the final result is exactly what we needed."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to boost your project?",
+      "subtitle": "Contact me today to discuss how I can help you take your idea to the next level.",
+      "button": "Start project"
+    },
+    "about": {
+      "title": "About me",
+      "description": "I'm a developer passionate about creating digital solutions that solve real problems. With experience in modern technologies, I specialize in creating high-quality web and mobile applications."
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Recent work",
+    "filters": {
+      "all": "All",
+      "simple": "Simple websites",
+      "corporate": "Corporate websites",
+      "custom": "Custom websites"
+    },
+    "viewProject": "View project",
+    "sections": {
+      "simple": {
+        "title": "Simple websites",
+        "description": "Basic and effective web solutions for small businesses and professionals."
+      },
+      "corporate": {
+        "title": "Corporate websites",
+        "description": "Professional websites for companies looking to establish a solid digital presence."
+      },
+      "custom": {
+        "title": "Custom websites",
+        "description": "Customized solutions for specific needs with advanced functionalities."
+      }
+    },
+    "examples": {
+      "simple": {
+        "blog": {
+          "title": "Personal Blog",
+          "description": "A simple personal blog with minimalist design and basic functionality."
+        },
+        "portfolio": {
+          "title": "Photographer Portfolio",
+          "description": "A simple website to showcase a professional photographer's work."
+        }
+      },
+      "corporate": {
+        "website": {
+          "title": "Corporate Website",
+          "description": "A professional website for a consulting company with multiple sections."
+        },
+        "news": {
+          "title": "News Portal",
+          "description": "A corporate news portal with content management system."
+        }
+      },
+      "custom": {
+        "ecommerce": {
+          "title": "E-commerce Platform",
+          "description": "A complete e-commerce platform with shopping cart and payment integration."
+        },
+        "realestate": {
+          "title": "Real Estate Management System",
+          "description": "A custom system for managing properties, clients, and real estate transactions."
+        }
+      }
+    }
+  },
+  "project": {
+    "client": "Client",
+    "duration": "Duration",
+    "technologies": "Technologies",
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "results": "Results",
+    "nextProject": "Next project",
+    "previousProject": "Previous project"
+  },
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "Custom packages for your needs",
+    "basic": {
+      "title": "Basic",
+      "description": "Ideal for small businesses that need an online presence",
+      "features": [
+        "Responsive web design",
+        "Up to 5 pages",
+        "Basic SEO",
+        "Contact form",
+        "Social media integration"
+      ]
+    },
+    "standard": {
+      "title": "Standard",
+      "description": "Perfect for growing businesses that need more functionality",
+      "features": [
+        "Everything in Basic package",
+        "Up to 10 pages",
+        "Integrated blog",
+        "Advanced SEO",
+        "Admin panel",
+        "Speed optimization"
+      ]
+    },
+    "premium": {
+      "title": "Premium",
+      "description": "Complete solution for businesses that require custom applications",
+      "features": [
+        "Everything in Standard package",
+        "Custom web application",
+        "Integration with existing systems",
+        "Advanced features",
+        "Priority support",
+        "Monthly maintenance"
+      ]
+    },
+    "custom": {
+      "title": "Custom",
+      "description": "Tailored solutions for specific needs",
+      "features": [
+        "Requirements analysis",
+        "Custom UX/UI design",
+        "Custom development",
+        "Integration with existing systems",
+        "Support and maintenance",
+        "Guaranteed scalability"
+      ]
+    },
+    "cta": "Contact for more information"
+  },
+  "specs": {
+    "title": "Specifications and Requirements",
+    "subtitle": "How I work and what I need to get started",
+    "process": {
+      "title": "Work process",
+      "steps": [
+        {
+          "title": "Requirements analysis",
+          "description": "We understand your needs and objectives to define the scope of the project."
+        },
+        {
+          "title": "UX/UI Design",
+          "description": "We create wireframes and visual designs to validate the user experience."
+        },
+        {
+          "title": "Development",
+          "description": "We implement the solution using the most appropriate technologies."
+        },
+        {
+          "title": "Testing",
+          "description": "We perform thorough testing to ensure product quality."
+        },
+        {
+          "title": "Deployment",
+          "description": "We launch the solution and help you get it up and running."
+        },
+        {
+          "title": "Support",
+          "description": "We offer ongoing support to ensure long-term success."
+        }
+      ]
+    },
+    "requirements": {
+      "title": "What I need to get started",
+      "items": [
+        "Clear description of objectives and needs",
+        "Reference designs or sites you like",
+        "Content (text, images, logos)",
+        "Access information to existing services (if applicable)",
+        "Estimated budget and timeframes"
+      ]
+    },
+    "deliverables": {
+      "title": "What I will deliver",
+      "items": [
+        "Complete source code",
+        "Technical documentation",
+        "User manual (if applicable)",
+        "Design files",
+        "Post-launch support"
+      ]
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's talk about your project",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send message"
+    },
+    "info": {
+      "title": "Contact information",
+      "email": "email@example.com",
+      "phone": "+34 123 456 789",
+      "address": "Madrid, Spain",
+      "social": {
+        "title": "Social media",
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "twitter": "Twitter"
+      }
+    },
+    "success": "Message sent successfully! I will respond as soon as possible.",
+    "error": "An error occurred while sending the message. Please try again."
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "privacy": "Privacy policy",
+    "terms": "Terms and conditions"
+  }
+}

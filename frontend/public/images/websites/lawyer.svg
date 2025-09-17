@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <!-- Fondo -->
+  <rect width="400" height="300" fill="#f0f0f0"/>
+  
+  <!-- Columnas de justicia -->
+  <rect x="100" y="80" width="30" height="150" fill="#555"/>
+  <rect x="270" y="80" width="30" height="150" fill="#555"/>
+  
+  <!-- Base superior -->
+  <rect x="80" y="80" width="240" height="20" fill="#777"/>
+  
+  <!-- Base inferior -->
+  <rect x="60" y="230" width="280" height="20" fill="#777"/>
+  
+  <!-- Balanza de la justicia -->
+  <line x1="200" y1="50" x2="200" y2="100" stroke="#333" stroke-width="4"/>
+  <line x1="150" y1="100" x2="250" y2="100" stroke="#333" stroke-width="4"/>
+  
+  <!-- Platos de la balanza -->
+  <ellipse cx="150" cy="120" rx="30" ry="10" fill="#888"/>
+  <ellipse cx="250" cy="120" rx="30" ry="10" fill="#888"/>
+  
+  <!-- Cadenas -->
+  <line x1="150" y1="100" x2="150" y2="120" stroke="#333" stroke-width="2"/>
+  <line x1="250" y1="100" x2="250" y2="120" stroke="#333" stroke-width="2"/>
+  
+  <!-- Texto -->
+  <text x="200" y="280" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">Bufete de Abogados</text>
+</svg>

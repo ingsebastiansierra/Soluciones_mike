@@ -1,0 +1,337 @@
+{
+  "common": {
+    "language": "Idioma",
+    "english": "Inglés",
+    "spanish": "Español",
+    "menu": {
+      "home": "Inicio",
+      "projects": "Proyectos",
+      "pricing": "Precios",
+      "specs": "Especificaciones",
+      "contact": "Contacto"
+    },
+    "cta": {
+      "contact": "Contáctame",
+      "seeProjects": "Ver proyectos",
+      "learnMore": "Saber más"
+    },
+    "viewProject": "Ver proyecto",
+    "learnMore": "Saber más"
+  },
+  "pricing": {
+    "title": "Nuestros Planes de Precios",
+    "subtitle": "Elige el plan perfecto para las necesidades de tu proyecto. Todos los planes incluyen diseño responsive y optimización SEO.",
+    "perProject": "por proyecto",
+    "selectPlan": "Seleccionar Plan",
+    "mostPopular": "Más Popular",
+    "plans": {
+      "basic": {
+        "name": "Básico",
+        "description": "Perfecto para pequeños negocios y proyectos personales",
+        "features": {
+          "0": "Diseño responsive",
+          "1": "Hasta 5 páginas",
+          "2": "Formulario de contacto",
+          "3": "Optimización SEO básica",
+          "4": "1 mes de soporte"
+        }
+      },
+      "professional": {
+        "name": "Profesional",
+        "description": "Ideal para negocios en crecimiento y comercio electrónico",
+        "features": {
+          "0": "Todo lo del plan Básico",
+          "1": "Funcionalidad de comercio electrónico",
+          "2": "Hasta 10 páginas",
+          "3": "Sistema de gestión de contenidos",
+          "4": "Optimización SEO avanzada",
+          "5": "3 meses de soporte",
+          "6": "Optimización de rendimiento"
+        }
+      },
+      "enterprise": {
+        "name": "Empresarial",
+        "description": "Solución completa para grandes empresas con necesidades complejas",
+        "features": {
+          "0": "Todo lo del plan Profesional",
+          "1": "Número ilimitado de páginas",
+          "2": "Integraciones personalizadas",
+          "3": "Análisis de datos avanzado",
+          "4": "Optimización de conversión",
+          "5": "6 meses de soporte",
+          "6": "Mantenimiento continuo",
+          "7": "Actualizaciones prioritarias"
+        }
+      }
+    },
+    "custom": {
+      "title": "¿Necesitas algo diferente?",
+      "description": "Contacta conmigo para discutir tus necesidades específicas y obtener un presupuesto personalizado.",
+      "button": "Contactar"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Desarrollo web profesional para tu negocio",
+      "subtitle": "Soluciones digitales a medida que impulsan tu presencia online",
+      "cta": "Ver proyectos"
+    },
+    "services": {
+      "title": "Servicios",
+      "subtitle": "Lo que ofrezco",
+      "items": {
+        "webDevelopment": {
+          "title": "Desarrollo Web",
+          "description": "Creación de sitios web modernos, rápidos y optimizados para SEO utilizando las últimas tecnologías."
+        },
+        "ecommerce": {
+          "title": "Comercio Electrónico",
+          "description": "Implementación de tiendas online completas con gestión de productos, pagos y envíos."
+        },
+        "webApps": {
+          "title": "Aplicaciones Web",
+          "description": "Desarrollo de aplicaciones web personalizadas con funcionalidades específicas para tu negocio."
+        },
+        "maintenance": {
+          "title": "Mantenimiento",
+          "description": "Servicios de mantenimiento y actualización para mantener tu sitio web seguro y funcionando correctamente."
+        }
+      }
+    },
+    "process": {
+      "title": "Proceso de Trabajo",
+      "subtitle": "Cómo lo hago",
+      "steps": {
+        "1": {
+          "title": "Planificación",
+          "description": "Análisis detallado de requisitos y objetivos para crear un plan de proyecto efectivo."
+        },
+        "2": {
+          "title": "Diseño",
+          "description": "Creación de wireframes y diseños visuales que reflejen la identidad de tu marca."
+        },
+        "3": {
+          "title": "Desarrollo",
+          "description": "Implementación del diseño utilizando código limpio y optimizado."
+        },
+        "4": {
+          "title": "Pruebas",
+          "description": "Verificación exhaustiva de funcionalidad, rendimiento y compatibilidad."
+        },
+        "5": {
+          "title": "Lanzamiento",
+          "description": "Despliegue del proyecto y configuración final para su puesta en marcha."
+        },
+        "6": {
+          "title": "Soporte",
+          "description": "Asistencia continua y mantenimiento para garantizar el éxito a largo plazo."
+        }
+      }
+    },
+    "projects": {
+      "title": "Proyectos Destacados",
+      "subtitle": "Algunos de mis trabajos recientes",
+      "viewAll": "Ver todos los proyectos"
+    },
+    "testimonials": {
+      "title": "Testimonios",
+      "subtitle": "Lo que dicen mis clientes",
+      "items": {
+        "1": {
+          "name": "Juan Pérez",
+          "company": "Startup Innovadora",
+          "text": "Trabajar con Mike ha sido una experiencia excepcional. Entendió perfectamente nuestras necesidades y entregó un producto que superó nuestras expectativas."
+        },
+        "2": {
+          "name": "María García",
+          "company": "Empresa Innovadora SL",
+          "text": "La atención al detalle y la calidad del trabajo son impresionantes. Nuestra aplicación ha recibido comentarios muy positivos de los usuarios."
+        },
+        "3": {
+          "name": "Carlos Rodríguez",
+          "company": "Startup Digital",
+          "text": "Profesional, eficiente y creativo. El proceso de desarrollo fue transparente, y el resultado final es exactamente lo que necesitábamos."
+        },
+        "4": {
+          "name": "Laura Martínez",
+          "company": "Consultoría Tecnológica",
+          "text": "Excelente trabajo y comunicación durante todo el proyecto. Recomendaría sus servicios sin dudarlo."
+        },
+        "5": {
+          "name": "Antonio Sánchez",
+          "company": "Agencia Creativa",
+          "text": "Gran profesional con un enfoque muy orientado a resultados. Nuestro sitio web ha mejorado significativamente en términos de rendimiento y conversiones."
+        },
+        "6": {
+          "name": "Elena López",
+          "company": "Fundadora, MenteCreativa",
+          "text": "Increíble capacidad para transformar ideas en soluciones funcionales. El proceso fue fluido y el resultado final superó nuestras expectativas."
+        }
+      }
+    },
+    "cta": {
+      "title": "¿Listo para impulsar tu proyecto?",
+      "subtitle": "Contáctame hoy para discutir cómo puedo ayudarte a llevar tu idea al siguiente nivel.",
+      "button": "Iniciar proyecto"
+    },
+    "about": {
+      "title": "Sobre mí",
+      "description": "Soy un desarrollador apasionado por crear soluciones digitales que resuelvan problemas reales. Con experiencia en tecnologías modernas, me especializo en crear aplicaciones web y móviles de alta calidad."
+    }
+  },
+  "projects": {
+    "title": "Proyectos",
+    "subtitle": "Trabajos recientes",
+    "filters": {
+      "all": "Todos",
+      "simple": "Páginas web sencillas",
+      "corporate": "Páginas web corporativas",
+      "custom": "Páginas web a medida"
+    },
+    "viewProject": "Ver proyecto",
+    "sections": {
+      "simple": {
+        "title": "Páginas web sencillas",
+        "description": "Soluciones web básicas y efectivas para pequeños negocios y profesionales."
+      },
+      "corporate": {
+        "title": "Páginas web corporativas",
+        "description": "Sitios web profesionales para empresas que buscan establecer una presencia digital sólida."
+      },
+      "custom": {
+        "title": "Páginas web a medida",
+        "description": "Soluciones personalizadas para necesidades específicas con funcionalidades avanzadas."
+      }
+    },
+    "examples": {
+      "simple": {
+        "blog": {
+          "title": "Blog Personal",
+          "description": "Un blog personal sencillo con diseño minimalista y funcionalidad básica."
+        },
+        "portfolio": {
+          "title": "Portafolio de Fotógrafo",
+          "description": "Un sitio web sencillo para mostrar el trabajo de un fotógrafo profesional."
+        }
+      },
+      "corporate": {
+        "website": {
+          "title": "Sitio Web Corporativo",
+          "description": "Un sitio web profesional para una empresa de consultoría con múltiples secciones."
+        },
+        "news": {
+          "title": "Portal de Noticias",
+          "description": "Un portal de noticias corporativo con sistema de gestión de contenidos."
+        }
+      },
+      "custom": {
+        "ecommerce": {
+          "title": "Plataforma de Comercio Electrónico",
+          "description": "Una plataforma completa de comercio electrónico con carrito de compras e integración de pagos."
+        },
+        "realestate": {
+          "title": "Sistema de Gestión Inmobiliaria",
+          "description": "Un sistema personalizado para gestión de propiedades, clientes y transacciones inmobiliarias."
+        }
+      }
+    }
+  },
+  "project": {
+    "client": "Cliente",
+    "duration": "Duración",
+    "technologies": "Tecnologías",
+    "challenge": "Desafío",
+    "solution": "Solución",
+    "results": "Resultados",
+    "nextProject": "Siguiente proyecto",
+    "previousProject": "Proyecto anterior"
+  },
+  "specs": {
+    "title": "Especificaciones y Requisitos",
+    "subtitle": "Cómo trabajo y qué necesito para comenzar",
+    "process": {
+      "title": "Mi proceso de trabajo",
+      "steps": {
+        "1": {
+          "title": "Consulta inicial",
+          "description": "Reunión para entender tus necesidades y objetivos del proyecto."
+        },
+        "2": {
+          "title": "Propuesta y presupuesto",
+          "description": "Elaboración de una propuesta detallada con alcance, plazos y costos."
+        },
+        "3": {
+          "title": "Diseño y wireframes",
+          "description": "Creación de maquetas visuales y estructura del sitio para tu aprobación."
+        },
+        "4": {
+          "title": "Desarrollo",
+          "description": "Implementación del diseño con código limpio y optimizado."
+        },
+        "5": {
+          "title": "Pruebas y ajustes",
+          "description": "Verificación exhaustiva y correcciones necesarias."
+        },
+        "6": {
+          "title": "Lanzamiento",
+          "description": "Despliegue del sitio y configuraciones finales."
+        },
+        "7": {
+          "title": "Soporte post-lanzamiento",
+          "description": "Asistencia técnica y mantenimiento según lo acordado."
+        }
+      }
+    },
+    "requirements": {
+      "title": "Qué necesito para comenzar",
+      "items": [
+        "Descripción clara de objetivos y necesidades",
+        "Diseños o sitios de referencia que te gusten",
+        "Contenido (texto, imágenes, logotipos)",
+        "Información de acceso a servicios existentes (si aplica)",
+        "Presupuesto y plazos estimados"
+      ]
+    },
+    "deliverables": {
+      "title": "Qué entregaré",
+      "items": [
+        "Código fuente completo",
+        "Documentación técnica",
+        "Manual de usuario (si aplica)",
+        "Archivos de diseño",
+        "Soporte post-lanzamiento"
+      ]
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Hablemos sobre tu proyecto",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "submit": "Enviar mensaje"
+    },
+    "info": {
+      "title": "Información de contacto",
+      "email": "email@example.com",
+      "phone": "+34 123 456 789",
+      "address": "Madrid, España",
+      "social": {
+        "title": "Redes sociales",
+        "linkedin": "LinkedIn",
+        "github": "GitHub",
+        "twitter": "Twitter"
+      }
+    },
+    "success": "¡Mensaje enviado con éxito! Responderé lo antes posible.",
+    "error": "Ocurrió un error al enviar el mensaje. Por favor, inténtalo de nuevo."
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "privacy": "Política de privacidad",
+    "terms": "Términos y condiciones"
+  }
+}
