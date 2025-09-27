@@ -6,144 +6,85 @@ const Footer = () => {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
-    { name: 'LinkedIn', icon: 'linkedin', url: 'https://linkedin.com' },
-    { name: 'GitHub', icon: 'github', url: 'https://github.com' },
-    { name: 'Twitter', icon: 'twitter', url: 'https://twitter.com' },
-  ];
-
   const footerLinks = [
     { name: t('common.menu.home'), path: '/' },
     { name: t('common.menu.projects'), path: '/projects' },
     { name: t('common.menu.pricing'), path: '/pricing' },
-    { name: t('common.menu.specs'), path: '/specifications' },
     { name: t('common.menu.contact'), path: '/contact' },
   ];
 
   return (
-    <footer className="bg-gray-100 dark:bg-gray-900 pt-16 pb-8">
-      <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {/* Logo and description */}
-          <div>
-            <Link to="/" className="text-2xl font-bold mb-4 inline-block">
-              <span className="text-accent">Mike</span>
-              <span className="text-primary dark:text-white">Dev</span>
-            </Link>
-            <p className="text-gray-600 dark:text-gray-400 mt-4">
-              {t('home.hero.description')}
-            </p>
-            <div className="flex space-x-4 mt-6">
-              {socialLinks.map((link) => (
-                <motion.a
-                  key={link.name}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span className="sr-only">{link.name}</span>
-                  <SocialIcon name={link.icon} />
-                </motion.a>
-              ))}
+    <footer className="bg-white dark:bg-slate-900">
+      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center text-center">
+          <div className="flex items-center gap-3">
+            <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+              <path clipRule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor" fillRule="evenodd"></path>
+            </svg>
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Soluciones Mike</h2>
+          </div>
+          
+          <p className="mt-4 max-w-md text-slate-500 dark:text-slate-400">
+            {t('footer.description')}
+          </p>
+          
+          <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-6">
+            <div className="flex items-center gap-2">
+              <svg className="h-5 w-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+              </svg>
+              <span className="text-slate-600 dark:text-slate-400">{t('footer.location')}</span>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <svg className="h-5 w-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+              </svg>
+              <span className="text-slate-600 dark:text-slate-400">{t('footer.phone')}</span>
+            </div>
+            
+            <div className="flex items-center gap-2">
+              <svg className="h-5 w-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+              </svg>
+              <span className="text-slate-600 dark:text-slate-400">{t('footer.email')}</span>
             </div>
           </div>
-
-          {/* Quick links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-primary dark:text-white">
-              {t('common.menu.home')}
-            </h3>
-            <ul className="space-y-2">
-              {footerLinks.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact info */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-primary dark:text-white">
-              {t('contact.info.title')}
-            </h3>
-            <ul className="space-y-2">
-              <li className="flex items-center text-gray-600 dark:text-gray-400">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-accent" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                </svg>
-                <span>{t('contact.info.email')}</span>
-              </li>
-              <li className="flex items-center text-gray-600 dark:text-gray-400">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-accent" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                </svg>
-                <span>{t('contact.info.phone')}</span>
-              </li>
-              <li className="flex items-center text-gray-600 dark:text-gray-400">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-accent" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                </svg>
-                <span>{t('contact.info.address')}</span>
-              </li>
-            </ul>
+          
+          <div className="mt-8 flex justify-center space-x-6">
+            <motion.a 
+              className="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary" 
+              href="https://wa.me/573121310650"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="sr-only">WhatsApp</span>
+              <svg aria-hidden="true" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.001 2.002a9.99 9.99 0 0 0-6.924 16.63l.006-.005.005.005-1.51 5.342 5.46-1.488a9.99 9.99 0 1 0-3.955-16.598.01.01 0 0 0 .002.001.002.002 0 0 0 .002 0h.001zm0 18.002a8.004 8.004 0 1 1 0-16.008 8.004 8.004 0 0 1 0 16.008zm-3.15-5.547l-.196-.115a.999.999 0 0 0-1.127.32l-.505.864a1.002 1.002 0 0 0 .138 1.31l.002.001c.219.18 1.083.51 2.22.01.12-.05.23-.11.33-.18.01 0 .01-.01.02-.01.02-.01.03-.02.05-.03a7.22 7.22 0 0 0 2.2-1.6.01.01 0 0 0 .01-.01 5.92 5.92 0 0 0 1.51-2.2l.06-.21a1.004 1.004 0 0 0-.42-1.06l-.88-.51a1.001 1.001 0 0 0-1.28.31l-.22.38c-.08.14-.24.2-.4.12l-1.4-.82a.992.992 0 0 1-.58-.92v-.23c.03-.22.2-.4.4-.5l.5-.29c.4-.23.54-.78.3-1.18l-.51-.88a1.004 1.004 0 0 0-1.06-.42l-1.07.24a1.002 1.002 0 0 0-.74.95v.02c0 .12.02.24.06.35l.01.02z"></path>
+              </svg>
+            </motion.a>
+            
+            <motion.a 
+              className="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary" 
+              href="https://www.facebook.com/profile.php?id=100092532574465"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="sr-only">Facebook</span>
+              <svg aria-hidden="true" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path clipRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fillRule="evenodd"></path>
+              </svg>
+            </motion.a>
           </div>
         </div>
-
-        {/* Copyright */}
-        <div className="border-t border-gray-200 dark:border-gray-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
-              &copy; {currentYear} MikeDev. {t('footer.rights')}
-            </p>
-            <div className="flex space-x-4 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-gray-600 dark:text-gray-400 text-sm hover:text-accent dark:hover:text-accent transition-colors">
-                {t('footer.privacy')}
-              </Link>
-              <Link to="/terms" className="text-gray-600 dark:text-gray-400 text-sm hover:text-accent dark:hover:text-accent transition-colors">
-                {t('footer.terms')}
-              </Link>
-            </div>
-          </div>
+        
+        <div className="mt-8 border-t border-slate-200 dark:border-slate-700 pt-8 text-center text-sm text-slate-500 dark:text-slate-400">
+          <p>© {currentYear} Soluciones Mike. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
   );
-};
-
-// Componente para iconos sociales
-const SocialIcon = ({ name }) => {
-  switch (name) {
-    case 'linkedin':
-      return (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-        </svg>
-      );
-    case 'github':
-      return (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-        </svg>
-      );
-    case 'twitter':
-      return (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-        </svg>
-      );
-    default:
-      return null;
-  }
 };
 
 export default Footer;

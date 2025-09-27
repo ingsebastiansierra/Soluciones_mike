@@ -239,6 +239,7 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        placeholder="Ingrese su nombre completo"
                         className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent bg-white dark:bg-gray-900 transition-all duration-300"
                       />
                     </motion.div>
@@ -264,6 +265,7 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        placeholder="ejemplo@correo.com"
                         className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent bg-white dark:bg-gray-900 transition-all duration-300"
                       />
                     </motion.div>
@@ -291,6 +293,7 @@ const Contact = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
+                        placeholder="+57 300 123 4567"
                         className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent bg-white dark:bg-gray-900 transition-all duration-300"
                       />
                     </motion.div>
@@ -316,6 +319,7 @@ const Contact = () => {
                         value={formData.subject}
                         onChange={handleChange}
                         required
+                        placeholder="Asunto de su consulta"
                         className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent bg-white dark:bg-gray-900 transition-all duration-300"
                       />
                     </motion.div>
@@ -342,6 +346,7 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
+                      placeholder="Escriba su mensaje aquí. Cuéntenos en qué podemos ayudarle..."
                       rows="5"
                       className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent bg-white dark:bg-gray-900 transition-all duration-300"
                     ></textarea>
@@ -439,7 +444,7 @@ const Contact = () => {
                     </motion.div>
                     <div>
                       <h3 className="text-lg font-medium">Teléfono</h3>
-                      <p className="mt-1">+34 612 345 678</p>
+                      <p className="mt-1">+57 312 131 0650</p>
                     </div>
                   </motion.div>
                   
@@ -466,7 +471,7 @@ const Contact = () => {
                     </motion.div>
                     <div>
                       <h3 className="text-lg font-medium">Correo electrónico</h3>
-                      <p className="mt-1">info@solucionesmike.com</p>
+                      <p className="mt-1">solucionesmike@gmail.com</p>
                     </div>
                   </motion.div>
                   
@@ -494,7 +499,7 @@ const Contact = () => {
                     </motion.div>
                     <div>
                       <h3 className="text-lg font-medium">Dirección</h3>
-                      <p className="mt-1">Calle Principal 123, 28001 Madrid, España</p>
+                      <p className="mt-1">Calle 5 #4-22, Samacá, Boyacá, Colombia</p>
                     </div>
                   </motion.div>
                 </div>
@@ -648,56 +653,18 @@ const Contact = () => {
               transition: { duration: 0.4 }
             }}
           >
-            {/* This would be replaced with an actual map component in a real implementation */}
-            <div className="w-full h-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center relative overflow-hidden">
-              {/* Elementos decorativos dentro del mapa */}
-              <motion.div 
-                className="absolute top-10 left-10 w-20 h-20 rounded-full bg-accent/20 blur-xl"
-                animate={{ 
-                  scale: [1, 1.5, 1],
-                  opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{ 
-                  duration: 4, 
-                  repeat: Infinity,
-                  ease: "easeInOut" 
-                }}
-              />
-              <motion.div 
-                className="absolute bottom-10 right-10 w-20 h-20 rounded-full bg-blue-500/20 blur-xl"
-                animate={{ 
-                  scale: [1, 1.5, 1],
-                  opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{ 
-                  duration: 4, 
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 2
-                }}
-              />
-              
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="flex flex-col items-center"
-              >
-                <motion.div 
-                  className="w-16 h-16 bg-accent/90 rounded-full flex items-center justify-center mb-4 text-white"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                  </svg>
-                </motion.div>
-                <p className="text-lg font-medium bg-white/90 dark:bg-gray-800/90 px-6 py-3 rounded-lg shadow-lg">
-                  {t('contact.map.placeholder')}
-                </p>
-              </motion.div>
-            </div>
+            {/* Mapa de Google Maps mostrando Samacá */}
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31792.02246908!2d-73.50000917910158!3d5.513333899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6a3f0ca12f6173%3A0x3812f974d3ae202!2sSamac%C3%A1%2C%20Boyac%C3%A1!5e0!3m2!1ses!2sco!4v1695123456789!5m2!1ses!2sco" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen="" 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Mapa de Samacá, Boyacá"
+              className="w-full h-full"
+            />
           </motion.div>
         </div>
       </Section>

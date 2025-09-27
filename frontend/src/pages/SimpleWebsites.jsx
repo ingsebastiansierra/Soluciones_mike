@@ -55,9 +55,9 @@ const SimpleWebsites = () => {
           transition={{ duration: 0.5 }}
           className="text-center max-w-4xl mx-auto"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('simpleWebsites.title', 'Sitios Web Simples')}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('projects.simpleWebsites.title')}</h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-            {t('simpleWebsites.subtitle', 'Ejemplos de sitios web simples y elegantes para diferentes negocios')}
+            {t('projects.simpleWebsites.subtitle')}
           </p>
         </motion.div>
 
@@ -84,7 +84,7 @@ const SimpleWebsites = () => {
                   to={website.path}
                   className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition-colors duration-300"
                 >
-                  {t('simpleWebsites.viewButton', 'Ver Sitio')}
+                  {t('projects.simpleWebsites.viewButton')}
                 </Link>
               </div>
             </motion.div>

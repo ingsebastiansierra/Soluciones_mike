@@ -1,54 +1,54 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Section from '../components/ui/Section';
 import Button from '../components/ui/Button';
 
 const pricingPlans = [
   {
     id: 'basic',
-    name: 'Páginas Básicas',
+    nameKey: 'pricing.plans.basic.name',
     price: 499000,
-    description: 'Perfecto para pequeñas empresas y proyectos personales',
-    features: [
-      'Diseño responsive',
-      'Hasta 5 páginas',
-      'Formulario de contacto',
-      'Optimización SEO básica',
-      '1 mes de soporte'
+    descriptionKey: 'pricing.plans.basic.description',
+    featuresKeys: [
+      'pricing.plans.basic.features.0',
+      'pricing.plans.basic.features.1',
+      'pricing.plans.basic.features.2',
+      'pricing.plans.basic.features.3',
+      'pricing.plans.basic.features.4'
     ],
     popular: false
   },
   {
-    id: 'professional',
-    name: 'Páginas Corporativas',
+    id: 'standard',
+    nameKey: 'pricing.plans.professional.name',
     price: 990000,
-    description: 'Ideal para empresas en crecimiento y comercio electrónico',
-    features: [
-      'Todo lo de Páginas Básicas',
-      'Funcionalidad de comercio electrónico',
-      'Hasta 10 páginas',
-      'Sistema de gestión de contenido',
-      'Optimización SEO avanzada',
-      '3 meses de soporte',
-      'Optimización de rendimiento'
+    descriptionKey: 'pricing.plans.professional.description',
+    featuresKeys: [
+      'pricing.plans.professional.features.0',
+      'pricing.plans.professional.features.1',
+      'pricing.plans.professional.features.2',
+      'pricing.plans.professional.features.3',
+      'pricing.plans.professional.features.4',
+      'pricing.plans.professional.features.5',
+      'pricing.plans.professional.features.6'
     ],
     popular: true
   },
   {
     id: 'enterprise',
-    name: 'Páginas a la Medida',
+    nameKey: 'pricing.plans.enterprise.name',
     price: 1490000,
-    description: 'Para empresas grandes con requisitos complejos',
-    features: [
-      'Todo lo de Páginas Corporativas',
-      'Páginas ilimitadas',
-      'Funcionalidad personalizada',
-      'Integración de base de datos',
-      'Desarrollo de API',
-      'Analítica avanzada',
-      '6 meses de soporte',
-      'Respuesta prioritaria'
+    descriptionKey: 'pricing.plans.enterprise.description',
+    featuresKeys: [
+      'pricing.plans.enterprise.features.0',
+      'pricing.plans.enterprise.features.1',
+      'pricing.plans.enterprise.features.2',
+      'pricing.plans.enterprise.features.3',
+      'pricing.plans.enterprise.features.4',
+      'pricing.plans.enterprise.features.5',
+      'pricing.plans.enterprise.features.6',
+      'pricing.plans.enterprise.features.7'
     ],
     popular: false
   }
@@ -64,6 +64,101 @@ const letterVariants = {
       delay: i * 0.05,
       duration: 0.5,
       ease: [0.22, 1, 0.36, 1]
+    }
+  })
+};
+
+// Variantes para animación de tarjetas
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i) => ({ 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.6, 
+      delay: i * 0.15,
+      ease: [0.22, 1, 0.36, 1]
+    } 
+  }),
+  hover: { 
+    y: -10,
+    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+    transition: { 
+      type: "spring", 
+      stiffness: 300, 
+      damping: 20 
+    }
+  }
+};
+
+// Variantes para animaciones de elementos
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      type: "spring",
+      stiffness: 260,
+      damping: 20,
+      duration: 0.5
+    } 
+  }
+};
+
+// Variantes para contenedor con efecto stagger
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+      ease: "easeOut"
+    }
+  }
+};
+
+// Variantes para animación de imágenes
+const imageAnimation = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { 
+      type: "spring",
+      stiffness: 200,
+      damping: 20,
+      duration: 0.8
+    } 
+  }
+};
+
+// Variantes para animación de texto con efecto de escritura
+const textReveal = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      type: "spring",
+      stiffness: 100,
+      damping: 20,
+      duration: 0.8
+    } 
+  }
+};
+
+// Variantes para animación de características
+const featureVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: (i) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.4,
+      ease: "easeOut"
     }
   })
 };
@@ -85,23 +180,60 @@ const Pricing = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   
   // Texto para animación letra por letra
-  const titleText = "Nuestros Planes de Precios";
+  const titleText = t('pricing.title');
   const titleArray = titleText.split("");
 
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <Section className="py-20 pt-16 overflow-hidden relative" id="pricing-hero">
+      <Section className="py-20 pt-20 overflow-hidden relative bg-gradient-to-b from-subtle-light to-white dark:from-subtle-dark dark:to-background-dark" id="pricing-hero">
+        {/* Elementos decorativos de fondo */}
+        <motion.div 
+          className="absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.3 }}
+          transition={{ duration: 2 }}
+        >
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full bg-gradient-to-r from-primary/20 to-accent/20 backdrop-blur-sm"
+              style={{
+                width: `${Math.random() * 300 + 100}px`,
+                height: `${Math.random() * 300 + 100}px`,
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, Math.random() * 30 - 15],
+                x: [0, Math.random() * 30 - 15],
+                rotate: [0, Math.random() * 10 - 5],
+                scale: [1, Math.random() * 0.2 + 0.9]
+              }}
+              transition={{
+                duration: Math.random() * 5 + 5,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </motion.div>
+
         <div ref={heroRef} className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
             className="text-center mb-20"
             style={{ opacity }}
             ref={titleRef}
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
           >
             <div className="overflow-hidden mb-6">
               <motion.h1 
-                className="text-4xl md:text-6xl font-bold mb-4 inline-block"
+                className="text-4xl md:text-6xl font-bold mb-4 inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent"
                 style={{ y: titleY }}
+                variants={textReveal}
               >
                 {titleArray.map((letter, index) => (
                   <motion.span
@@ -123,7 +255,7 @@ const Pricing = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <p className="text-xl max-w-3xl mx-auto">Elige el plan perfecto para las necesidades de tu proyecto</p>
+              <p className="text-xl max-w-3xl mx-auto text-foreground-light/80 dark:text-foreground-dark/80">{t('pricing.subtitle')}</p>
             </motion.div>
             
             <motion.div 
@@ -146,121 +278,147 @@ const Pricing = () => {
           {/* Pricing Plans */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {pricingPlans.map((plan, index) => {
-              // Variantes para animación de cada plan
-              const cardVariants = {
-                hidden: { opacity: 0, y: 50 },
-                visible: { 
-                  opacity: 1, 
-                  y: 0,
-                  transition: { 
-                    duration: 0.6, 
-                    delay: index * 0.15,
-                    ease: [0.22, 1, 0.36, 1]
-                  } 
-                },
-                hover: { 
-                  y: -10,
-                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                  transition: { 
-                    type: "spring", 
-                    stiffness: 300, 
-                    damping: 20 
-                  }
-                }
-              };
-              
               return (
                 <motion.div
                   key={plan.id}
-                  className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden relative ${plan.popular ? 'ring-2 ring-accent transform md:-translate-y-4 z-10' : ''}`}
+                  custom={index}
+                  className={`bg-card-light dark:bg-card-dark rounded-xl shadow-lg overflow-hidden relative ${plan.popular ? 'ring-2 ring-accent/50 transform md:-translate-y-4 z-10 shadow-xl' : ''}`}
                   variants={cardVariants}
                   initial="hidden"
                   whileInView="visible"
                   whileHover="hover"
                   viewport={{ once: true, margin: "-100px" }}
                 >
+                  {/* Efecto de brillo en los bordes para el plan popular */}
                   {plan.popular && (
                     <motion.div 
-                      className="bg-accent text-white text-sm font-medium px-4 py-1 text-center"
+                      className="absolute -inset-0.5 bg-gradient-to-r  to-accent/60 rounded-xl blur-sm opacity-50 z-0"
+                      animate={{ 
+                        backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                      }}
+                      transition={{ 
+                        duration: 8, 
+                        repeat: Infinity,
+                        ease: 'easeInOut'
+                      }}
+                    />
+                  )}
+                  
+                  {plan.popular && (
+                    <motion.div 
+                      className="bg-gradient-to-r from-accent to-primary text-white text-sm font-medium px-4 py-1 rounded-t-lg text-center relative z-10 shadow-md"
                       initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.5, duration: 0.3 }}
                     >
-                      Más Popular
+                      <motion.span
+                        animate={{
+                          scale: [1, 1.05, 1],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                        className="inline-block"
+                      >
+                        {t('pricing.mostPopular')}
+                      </motion.span>
                     </motion.div>
                   )}
                   <div className="p-6 md:p-8">
-                    <motion.h3 
-                      className="text-2xl font-bold mb-2"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: index * 0.15 + 0.2, duration: 0.5 }}
-                      viewport={{ once: true }}
-                    >
-                      {plan.name}
-                    </motion.h3>
-                    
-                    <motion.p 
-                      className="text-gray-600 dark:text-gray-300 mb-6"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: index * 0.15 + 0.3, duration: 0.5 }}
-                      viewport={{ once: true }}
-                    >
-                      {plan.description}
-                    </motion.p>
-                    
-                    <motion.div 
-                      className="mb-6"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.15 + 0.4, duration: 0.5 }}
-                      viewport={{ once: true }}
-                    >
-                      <span className="text-4xl font-bold">COP ${plan.price.toLocaleString('es-CO')}</span>
-                      <span className="text-gray-500 dark:text-gray-400 ml-2">por proyecto</span>
-                    </motion.div>
-                    
-                    <motion.ul 
-                      className="space-y-3 mb-8"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: index * 0.15 + 0.5, duration: 0.5 }}
-                      viewport={{ once: true }}
-                    >
-                      {plan.features.map((feature, i) => (
-                        <motion.li 
-                          key={i} 
-                          className="flex items-start"
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.05 + i * 0.05 + 0.5, duration: 0.3 }}
-                          viewport={{ once: true }}
-                        >
-                          <svg className="h-5 w-5 text-accent mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                          <span>{feature}</span>
-                        </motion.li>
-                      ))}
-                    </motion.ul>
-                    
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.15 + 0.7, duration: 0.5 }}
-                      viewport={{ once: true }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Button 
-                        to="/contact" 
-                        variant={plan.popular ? 'primary' : 'outline'}
-                        className="w-full justify-center"
+                    <div className="relative z-10">
+                      <motion.h3 
+                        className={`text-2xl font-bold mb-2 ${plan.popular ? 'bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent' : 'text-foreground-light dark:text-foreground-dark'}`}
+                        variants={textReveal}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
                       >
-                        Seleccionar Plan
-                      </Button>
-                    </motion.div>
+                        {t(plan.nameKey)}
+                      </motion.h3>
+                      
+                      <motion.p 
+                        className="text-foreground-light/70 dark:text-foreground-dark/70 mb-6"
+                        variants={itemVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                      >
+                        {t(plan.descriptionKey)}
+                      </motion.p>
+                      
+                      <motion.div 
+                        className="mb-6"
+                        variants={imageAnimation}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                      >
+                        <span className="text-4xl font-bold text-primary">COP ${plan.price.toLocaleString('es-CO')}</span>
+                        <span className="text-foreground-light/60 dark:text-foreground-dark/60 ml-2">{t('pricing.perProject')}</span>
+                      </motion.div>
+                      
+                      <motion.ul 
+                        className="space-y-3 mb-8"
+                        variants={staggerContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                      >
+                        {plan.featuresKeys.map((featureKey, i) => (
+                          <motion.li 
+                            key={i} 
+                            className="flex items-start"
+                            custom={i}
+                            variants={featureVariants}
+                            viewport={{ once: true }}
+                          >
+                            <motion.div
+                              whileHover={{ rotate: 360, scale: 1.2 }}
+                              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                              className="mr-2"
+                            >
+                              <svg className="h-5 w-5 text-primary mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                              </svg>
+                            </motion.div>
+                            <span className="text-foreground-light/80 dark:text-foreground-dark/80">{t(featureKey)}</span>
+                          </motion.li>
+                        ))}
+                      </motion.ul>
+                      
+                      <motion.div
+                        variants={itemVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                      >
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+                        >
+                          <Button 
+                            to="/contact" 
+                            variant={plan.popular ? 'primary' : 'outline'}
+                            className="w-full justify-center relative overflow-hidden group"
+                          >
+                            {plan.popular && (
+                              <motion.span 
+                                className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100"
+                                initial={{ x: "-100%" }}
+                                whileHover={{ x: "100%" }}
+                                transition={{ duration: 0.5 }}
+                              />
+                            )}
+                            {t('pricing.selectPlan')}
+                          </Button>
+                        </motion.div>
+                      </motion.div>
+                    </div>
                   </div>
                 </motion.div>
               );
@@ -270,49 +428,83 @@ const Pricing = () => {
       </Section>
 
       {/* FAQ Section */}
-      <Section className="py-20" id="pricing-faq" dark>
+      <Section className="py-20 bg-white dark:bg-slate-900 relative" id="pricing-faq">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`faq-bg-${i}`}
+              className="absolute rounded-full bg-gradient-to-r from-primary/10 to-accent/10 blur-xl"
+              style={{
+                width: Math.random() * 200 + 100,
+                height: Math.random() * 200 + 100,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                x: [0, Math.random() * 50 - 25],
+                y: [0, Math.random() * 50 - 25],
+                scale: [1, Math.random() * 0.3 + 0.9, 1],
+                opacity: [0.3, 0.6, 0.3],
+              }}
+              transition={{
+                duration: Math.random() * 10 + 15,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+          ))}
+        </div>
+        
         <div className="container mx-auto px-4 md:px-6 overflow-hidden">
           <div className="relative">
             <motion.div 
               className="text-center mb-16 relative z-10"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 relative inline-block">
-                Preguntas Frecuentes
+              <motion.h2 
+                className="text-3xl md:text-5xl font-bold mb-4 relative inline-block text-foreground-light dark:text-foreground-dark overflow-hidden"
+                variants={textReveal}
+              >
+                {t('pricing.faq.title')}
                 <motion.span 
-                  className="absolute -bottom-2 left-0 h-1 bg-accent rounded-full w-0"
+                  className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-primary to-accent rounded-full"
                   initial={{ width: 0 }}
                   whileInView={{ width: "100%" }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 />
-              </h2>
+              </motion.h2>
               <motion.p 
-                className="text-lg md:text-xl max-w-3xl mx-auto mt-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-lg md:text-xl max-w-3xl mx-auto mt-6 text-foreground-light/80 dark:text-foreground-dark/80"
+                variants={itemVariants}
               >
-                Encuentra respuestas a preguntas comunes sobre nuestros servicios y precios
+                {t('pricing.faq.subtitle')}
               </motion.p>
             </motion.div>
 
-            <div className="max-w-4xl mx-auto space-y-6">
+            <motion.div 
+              className="max-w-4xl mx-auto space-y-6"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               {[1, 2, 3, 4, 5].map((item) => {
                 // Variantes para animación de cada FAQ
                 const faqVariants = {
-                  hidden: { opacity: 0, x: -50 },
+                  hidden: { opacity: 0, y: 50 },
                   visible: { 
                     opacity: 1, 
-                    x: 0,
+                    y: 0,
                     transition: { 
-                      duration: 0.6, 
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20,
                       delay: item * 0.1,
-                      ease: [0.22, 1, 0.36, 1]
                     } 
                   },
                   hover: { 
@@ -329,54 +521,64 @@ const Pricing = () => {
                 return (
                   <motion.div 
                     key={item}
-                    className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
+                    className="bg-card-light dark:bg-card-dark rounded-lg shadow-md overflow-hidden relative"
                     variants={faqVariants}
-                    initial="hidden"
-                    whileInView="visible"
                     whileHover="hover"
                     viewport={{ once: true, margin: "-50px" }}
                   >
-                    <div className="p-6 md:p-8">
+                    {/* Animated border gradient */}
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-r from-primary/30 to-accent/30 opacity-0 rounded-lg"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    
+                    <div className="p-6 md:p-8 relative z-10">
                       <motion.h3 
-                        className="text-xl md:text-2xl font-bold mb-3"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ delay: item * 0.1 + 0.2, duration: 0.5 }}
+                        className="text-xl md:text-2xl font-bold mb-3 text-foreground-light dark:text-foreground-dark overflow-hidden"
+                        variants={textReveal}
                         viewport={{ once: true }}
                       >
-                        {item === 1 ? '¿Qué incluye la consulta inicial?' :
-                          item === 2 ? '¿Cuánto tiempo toma completar un sitio web?' :
-                          item === 3 ? '¿Ofrecen servicios de mantenimiento continuo?' :
-                          item === 4 ? '¿Puedo actualizar mi plan más adelante?' :
-                          '¿Proporcionan servicios de hosting?'}
+                        {item === 1 ? t('pricing.faq.items.1.question') :
+                          item === 2 ? t('pricing.faq.items.2.question') :
+                          item === 3 ? t('pricing.faq.items.3.question') :
+                          item === 4 ? t('pricing.faq.items.4.question') :
+                           t('pricing.faq.items.5.question')}
                       </motion.h3>
-                      <motion.p 
-                        className="text-gray-600 dark:text-gray-300"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ delay: item * 0.1 + 0.3, duration: 0.5 }}
+                      <motion.div 
+                        className="overflow-hidden"
+                        variants={itemVariants}
                         viewport={{ once: true }}
                       >
-                        {item === 1 ? 'Nuestra consulta inicial incluye una discusión detallada de los requisitos, objetivos, cronograma y presupuesto de tu proyecto. Proporcionaremos recomendaciones y una propuesta detallada adaptada a tus necesidades.' :
-                          item === 2 ? 'Los plazos del proyecto varían según la complejidad. Un sitio web básico generalmente toma de 2 a 4 semanas, mientras que proyectos más complejos con funcionalidades personalizadas pueden tomar de 6 a 12 semanas o más.' :
-                          item === 3 ? 'Sí, ofrecemos servicios de mantenimiento continuo para asegurar que tu sitio web permanezca actualizado, seguro y funcionando correctamente.' :
-                          item === 4 ? '¡Absolutamente! Puedes actualizar tu plan en cualquier momento a medida que tu negocio crece y evolucionan tus necesidades. Te ayudaremos a hacer la transición sin problemas a una solución más completa.' :
-                          'Sí, ofrecemos soluciones de hosting confiables optimizadas para rendimiento y seguridad. Sin embargo, si prefieres usar tu propio proveedor de hosting, también podemos adaptarnos a eso.'}
-                      </motion.p>
+                        <motion.p 
+                          className="text-foreground-light/80 dark:text-foreground-dark/80"
+                          initial={{ y: 20, opacity: 0 }}
+                          whileInView={{ y: 0, opacity: 1 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          {item === 1 ? t('pricing.faq.items.1.answer') :
+                            item === 2 ? t('pricing.faq.items.2.answer') :
+                            item === 3 ? t('pricing.faq.items.3.answer') :
+                            item === 4 ? t('pricing.faq.items.4.answer') :
+                            t('pricing.faq.items.5.answer')}
+                        </motion.p>
+                       </motion.div>
                     </div>
                   </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         </div>
       </Section>
 
       {/* CTA Section */}
-      <Section className="py-20" id="pricing-cta">
+      <Section className="py-20 bg-subtle-light dark:bg-subtle-dark" id="pricing-cta">
         <div className="container mx-auto px-4 md:px-6 overflow-hidden">
           <motion.div 
-            className="bg-gradient-to-r from-accent to-accent/80 rounded-2xl p-10 md:p-16 text-white text-center relative overflow-hidden"
+            className="bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-10 md:p-16 text-white text-center relative overflow-hidden"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -424,7 +626,7 @@ const Pricing = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                ¿Listo para comenzar tu proyecto?
+                {t('pricing.cta.title')}
               </motion.h2>
               
               <motion.p 
@@ -434,7 +636,7 @@ const Pricing = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Contáctanos hoy para una consulta gratuita y descubre cómo podemos ayudarte a alcanzar tus objetivos
+                {t('pricing.cta.subtitle')}
               </motion.p>
               
               <motion.div
@@ -451,7 +653,7 @@ const Pricing = () => {
                   size="lg"
                   className="inline-block px-8 py-4 text-lg font-bold shadow-lg"
                 >
-                  Contactar Ahora
+                  {t('pricing.cta.button')}
                 </Button>
               </motion.div>
             </div>

@@ -68,13 +68,53 @@
       "title": "¿Necesitas algo diferente?",
       "description": "Contacta conmigo para discutir tus necesidades específicas y obtener un presupuesto personalizado.",
       "button": "Contactar"
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "subtitle": "Encuentra respuestas a preguntas comunes sobre nuestros servicios y precios.",
+      "items": {
+        "1": {
+          "question": "¿Qué incluye la consulta inicial?",
+          "answer": "Nuestra consulta inicial incluye una discusión detallada de los requisitos, objetivos, plazos y presupuesto de tu proyecto. Te proporcionaremos recomendaciones y una propuesta detallada adaptada a tus necesidades."
+        },
+        "2": {
+          "question": "¿Cuánto tiempo tarda en completarse un sitio web?",
+          "answer": "Los plazos del proyecto varían según la complejidad. Un sitio web básico generalmente toma de 2 a 4 semanas, mientras que proyectos más complejos con funcionalidades personalizadas pueden tomar de 6 a 12 semanas o más."
+        },
+        "3": {
+          "question": "¿Ofrecen servicios de mantenimiento continuo?",
+          "answer": "Sí, ofrecemos varios paquetes de mantenimiento para mantener tu sitio web seguro, actualizado y con un rendimiento óptimo. Estos pueden añadirse a cualquiera de nuestros planes."
+        },
+        "4": {
+          "question": "¿Puedo actualizar mi plan más adelante?",
+          "answer": "¡Absolutamente! Puedes actualizar tu plan en cualquier momento a medida que tu negocio crece y tus necesidades evolucionan. Te ayudaremos a hacer la transición sin problemas a una solución más completa."
+        },
+        "5": {
+          "question": "¿Proporcionan servicios de hosting?",
+          "answer": "Sí, ofrecemos soluciones de hosting confiables optimizadas para rendimiento y seguridad. Sin embargo, si prefieres usar tu propio proveedor de hosting, también podemos adaptarnos a eso."
+        }
+      }
+    },
+    "cta": {
+      "title": "¿Listo para comenzar tu proyecto?",
+      "subtitle": "Contáctanos hoy para una consulta gratuita y descubre cómo podemos ayudarte a alcanzar tus objetivos.",
+      "button": "Ponte en contacto"
     }
   },
   "home": {
     "hero": {
       "title": "Desarrollo web profesional para tu negocio",
       "subtitle": "Soluciones digitales a medida que impulsan tu presencia online",
-      "cta": "Ver proyectos"
+      "cta": "Ver proyectos",
+      "viewProjects": "Ver Proyectos"
+    },
+    "videoDemo": {
+      "title": "Video de Demostración",
+      "subtitle": "Vea nuestro proceso y la calidad en acción"
+    },
+    "testimonials": {
+      "title": "Testimonios",
+      "subtitle": "Lo que dicen nuestros clientes"
     },
     "services": {
       "title": "Servicios",
@@ -131,7 +171,21 @@
     "projects": {
       "title": "Proyectos Destacados",
       "subtitle": "Algunos de mis trabajos recientes",
-      "viewAll": "Ver todos los proyectos"
+      "viewAll": "Ver todos los proyectos",
+      "items": {
+        "1": {
+          "title": "E-commerce Moderno",
+          "description": "Tienda en línea con diseño atractivo y experiencia de usuario optimizada."
+        },
+        "2": {
+          "title": "Aplicación de Gestión",
+          "description": "Sistema integral para la gestión de recursos empresariales."
+        },
+        "3": {
+          "title": "Plataforma Educativa",
+          "description": "Solución digital para cursos en línea y gestión de contenido educativo."
+        }
+      }
     },
     "testimonials": {
       "title": "Testimonios",
@@ -184,11 +238,30 @@
     "subtitle": "Trabajos recientes",
     "filters": {
       "all": "Todos",
-      "simple": "Páginas web sencillas",
-      "corporate": "Páginas web corporativas",
-      "custom": "Páginas web a medida"
+      "simple": "Simples",
+      "corporate": "Corporativos",
+      "custom": "Personalizados"
+    },
+    "sections": {
+      "simple": {
+        "title": "Sitios Web Simples",
+        "description": "Soluciones web básicas y efectivas para pequeños negocios"
+      },
+      "corporate": {
+        "title": "Sitios Web Corporativos",
+        "description": "Soluciones profesionales para empresas medianas y grandes"
+      },
+      "custom": {
+        "title": "Sitios Web Personalizados",
+        "description": "Soluciones a medida para necesidades específicas de negocio"
+      }
     },
     "viewProject": "Ver proyecto",
+    "simpleWebsites": {
+      "title": "Sitios Web Simples",
+      "subtitle": "Ejemplos de sitios web simples y elegantes para diferentes negocios",
+      "viewButton": "Ver Sitio"
+    },
     "sections": {
       "simple": {
         "title": "Páginas web sencillas",
@@ -212,6 +285,14 @@
         "portfolio": {
           "title": "Portafolio de Fotógrafo",
           "description": "Un sitio web sencillo para mostrar el trabajo de un fotógrafo profesional."
+        },
+        "lawyer": {
+          "title": "Bufete de Abogados",
+          "description": "Sitio web profesional para un bufete de abogados con secciones para servicios, equipo legal, testimonios y contacto."
+        },
+        "barbershop": {
+          "title": "Barbería",
+          "description": "Sitio web moderno para una barbería con secciones para servicios, galería, precios, testimonios y reserva de citas."
         }
       },
       "corporate": {
@@ -305,14 +386,24 @@
   },
   "contact": {
     "title": "Contacto",
-    "subtitle": "Hablemos sobre tu proyecto",
+    "subtitle": "Estamos aquí para ayudarte con tu próximo proyecto",
     "form": {
+      "title": "Envíanos un mensaje",
       "name": "Nombre",
       "email": "Correo electrónico",
-      "phone": "Teléfono",
+      "phone": "Teléfono (Opcional)",
       "subject": "Asunto",
       "message": "Mensaje",
-      "submit": "Enviar mensaje"
+      "submit": "Enviar mensaje",
+      "successMessage": "¡Gracias! Tu mensaje ha sido enviado correctamente. Nos pondremos en contacto contigo pronto.",
+      "errorMessage": "Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.",
+      "placeholders": {
+        "name": "Tu nombre completo",
+        "email": "tucorreo@ejemplo.com",
+        "phone": "+57 3XX XXX XXXX",
+        "subject": "¿Cómo podemos ayudarte?",
+        "message": "Cuéntanos sobre tu proyecto o pregunta..."
+      }
     },
     "info": {
       "title": "Información de contacto",
@@ -332,6 +423,10 @@
   "footer": {
     "rights": "Todos los derechos reservados",
     "privacy": "Política de privacidad",
-    "terms": "Términos y condiciones"
+    "terms": "Términos y condiciones",
+    "description": "Desarrollo web a tu medida, creando soluciones digitales innovadoras y eficientes.",
+    "location": "Samacá centro, Colombia",
+    "phone": "+57 3121310650",
+    "email": "vegasebastian073@gmail.com"
   }
 }

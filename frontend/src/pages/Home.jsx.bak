@@ -1,12 +1,78 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { motion, AnimatePresence } from 'framer-motion';
 import Section from '../components/ui/Section';
 import Button from '../components/ui/Button';
 import ProjectCard from '../components/projects/ProjectCard';
 
-// Se eliminaron las animaciones de framer-motion
+const fadeIn = {
+  hidden: {
+    y: 100,
+    opacity: 0
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.75,
+      ease: [0.22, 1, 0.36, 1], // Curva de animación más suave
+      type: 'spring',
+      stiffness: 100,
+      damping: 15
+    }
+  }
+};
 
-// Se eliminaron las animaciones de texto con efecto de escritura
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+      when: 'beforeChildren'
+    }
+  }
+};
+
+// Nuevas variantes de animación para elementos
+const itemVariants = {
+  hidden: { y: 50, opacity: 0 },
+  visible: { 
+    y: 0, 
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+      damping: 15
+    }
+  }
+};
+
+// Animación para imágenes con efecto de zoom
+const imageAnimation = {
+  hidden: { scale: 1.2, opacity: 0 },
+  visible: { 
+    scale: 1, 
+    opacity: 1,
+    transition: {
+      duration: 1.2,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
+
+// Animación para texto con efecto de escritura
+const textReveal = {
+  hidden: { width: '0%' },
+  visible: { 
+    width: '100%',
+    transition: {
+      duration: 1,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
 
 // Proyectos destacados
 const projects = [
@@ -74,7 +140,35 @@ const ProjectsCarousel = () => {
     );
   };
 
-  // Se eliminaron las variantes de animación para el carrusel
+  // Variantes de animación para el carrusel
+  const slideVariants = {
+    hiddenLeft: {
+      x: '100%',
+      opacity: 0,
+    },
+    hiddenRight: {
+      x: '-100%',
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 30,
+      },
+    },
+    exit: (direction) => ({
+      x: direction === 'left' ? '-100%' : '100%',
+      opacity: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 30,
+      },
+    }),
+  };
 
   // Efecto para autoplay del carrusel
   useEffect(() => {
@@ -87,9 +181,14 @@ const ProjectsCarousel = () => {
   return (
     <div className="relative overflow-hidden w-full" ref={carouselRef}>
       <div className="aspect-w-16 aspect-h-9 w-full max-w-5xl mx-auto relative">
-        <div>
-          <div
+        <AnimatePresence custom={direction} mode="wait">
+          <motion.div
             key={currentIndex}
+            custom={direction}
+            variants={slideVariants}
+            initial={direction === 'left' ? 'hiddenLeft' : 'hiddenRight'}
+            animate="visible"
+            exit="exit"
             className="absolute inset-0 w-full h-full"
           >
             <div className="h-full">
@@ -104,8 +203,8 @@ const ProjectsCarousel = () => {
                 url={projects[currentIndex].url}
               />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Controles de navegación */}
@@ -164,12 +263,15 @@ const Home = () => {
         }}
         id="hero"
       >
-        {/* Elementos decorativos */}
-        <div 
-          className="absolute inset-0 w-full h-full opacity-30"
+        {/* Elementos decorativos animados */}
+        <motion.div 
+          className="absolute inset-0 w-full h-full"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.3 }}
+          transition={{ duration: 2 }}
         >
           {[...Array(5)].map((_, i) => (
-            <div
+            <motion.div
               key={i}
               className="absolute rounded-full bg-white/20 backdrop-blur-sm"
               style={{
@@ -178,30 +280,50 @@ const Home = () => {
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
               }}
+              animate={{
+                y: [0, Math.random() * 30 - 15],
+                x: [0, Math.random() * 30 - 15],
+                scale: [1, Math.random() * 0.2 + 0.9]
+              }}
+              transition={{
+                duration: Math.random() * 5 + 5,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut"
+              }}
             />
           ))}
-        </div>
+        </motion.div>
 
-        <div 
+        <motion.div 
           className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
         >
-          <div className="overflow-hidden px-4">
-            <h1 
-              className="text-4xl md:text-6xl font-black tracking-tighter p-4"
+          <div className="overflow-hidden">
+            <motion.h1 
+              className="text-4xl md:text-6xl font-black tracking-tighter"
+              variants={itemVariants}
             >
               {t('home.hero.title')}
-            </h1>
+            </motion.h1>
           </div>
           
           <div className="overflow-hidden">
-            <p 
+            <motion.p 
               className="max-w-2xl mx-auto text-lg md:text-xl text-white/90"
+              variants={itemVariants}
             >
               {t('home.hero.subtitle')}
-            </p>
+            </motion.p>
           </div>
           
-          <div
+          <motion.div 
+            variants={itemVariants}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           >
             <Button 
               to="/projects" 
@@ -211,8 +333,8 @@ const Home = () => {
             >
               {t('home.hero.viewProjects')}
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
 
@@ -220,11 +342,15 @@ const Home = () => {
       {/* Projects Carousel Section */}
       <section id="projects" className="py-16 sm:py-24 relative overflow-hidden">
         {/* Elementos decorativos de fondo */}
-        <div 
+        <motion.div 
           className="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 0.1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5 }}
         >
           {[...Array(3)].map((_, i) => (
-            <div
+            <motion.div
               key={i}
               className="absolute bg-gradient-to-r from-primary/30 to-accent/30 rounded-full filter blur-3xl"
               style={{
@@ -233,82 +359,123 @@ const Home = () => {
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
               }}
+              animate={{
+                x: [0, Math.random() * 50 - 25],
+                y: [0, Math.random() * 50 - 25],
+                rotate: [0, Math.random() * 20 - 10],
+              }}
+              transition={{
+                duration: Math.random() * 10 + 15,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut"
+              }}
             />
           ))}
-        </div>
+        </motion.div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div 
+          <motion.div 
             className="text-center mb-12"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 
+            <motion.h2 
               className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent inline-block"
+              variants={textReveal}
             >
               {t('home.projects.title')}
-            </h2>
-            <p 
+            </motion.h2>
+            <motion.p 
               className="mt-4 text-lg text-foreground-light/70 dark:text-foreground-dark/70 max-w-2xl mx-auto"
+              variants={itemVariants}
             >
-              
-            </p>
-          </div>
+              {t('home.projects.description')}
+            </motion.p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <div 
+              <motion.div 
                 key={index}
                 className="bg-card-light dark:bg-card-dark rounded-lg overflow-hidden shadow-lg group"
-                
-                
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
               >
                 <div className="overflow-hidden">
-                  <img 
+                  <motion.img 
                     src={project.image} 
                     alt={t(`home.projects.items.${index+1}.title`)} 
                     className="w-full h-48 object-cover"
+                    variants={imageAnimation}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
                   />
                 </div>
                 <div className="p-6">
-                  <h3 
+                  <motion.h3 
                     className="text-xl font-semibold mb-2"
+                    variants={itemVariants}
                   >
                     {t(`home.projects.items.${index+1}.title`)}
-                  </h3>
-                  <p 
+                  </motion.h3>
+                  <motion.p 
                     className="text-sm text-foreground-light/70 dark:text-foreground-dark/70"
+                    variants={itemVariants}
                   >
                     {t(`home.projects.items.${index+1}.description`)}
-                  </p>
+                  </motion.p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <div 
+          <motion.div 
             className="text-center mt-12"
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
           >
-            <div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            >
               <Button 
                 to="/projects" 
                 variant="primary" 
                 size="lg"
                 className="py-3 px-8 text-lg relative overflow-hidden group"
               >
-                <span 
+                <motion.span 
                   className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.5 }}
                 />
                 {t('home.projects.viewAll')}
               </Button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Video Demo Section */}
       <section className="py-16 sm:py-24 bg-gradient-to-b from-subtle-light to-white dark:from-subtle-dark dark:to-background-dark relative overflow-hidden">
         {/* Elementos decorativos de fondo */}
-        <div 
+        <motion.div 
           className="absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 0.3 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5 }}
         >
           <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -322,64 +489,109 @@ const Home = () => {
             </defs>
             <rect width="100%" height="100%" fill="url(#grid)" />
           </svg>
-        </div>
+        </motion.div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div 
+          <motion.div 
             className="text-center mb-12"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 
+            <motion.h2 
               className="text-3xl md:text-4xl font-bold"
+              variants={textReveal}
             >
               {t('home.videoDemo.title')}
-            </h2>
-            <p 
+            </motion.h2>
+            <motion.p 
               className="mt-4 text-lg text-foreground-light/70 dark:text-foreground-dark/70 max-w-2xl mx-auto"
+              variants={itemVariants}
             >
               {t('home.videoDemo.subtitle')}
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
           
-          <div 
+          <motion.div 
             className="relative aspect-video rounded-xl overflow-hidden shadow-2xl max-w-4xl mx-auto"
+            variants={imageAnimation}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
           >
             {/* Efecto de brillo en los bordes */}
-            <div 
+            <motion.div 
               className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary rounded-xl blur-sm opacity-70 z-0"
+              animate={{ 
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{ 
+                duration: 5, 
+                repeat: Infinity,
+                ease: 'linear'
+              }}
             />
             
             <div className="relative z-10 rounded-xl overflow-hidden">
-              <video 
-                src="https://thetestdata.com/videos/1080p/5MB.mp4" 
-                poster="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+              <img 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-DSoHFpTUvdCGSHYhM-5LT6_DKwIP6es504GR50JFzCzKhRAdTvsCJqiAJ6vFgOnnzaNhIpFVBJAlHPaYpWuCNPWiGgnmdblaJ4lSXsqUoZuZg7ESMjxS8fmTfP3ytNXl-gj9j8IOSfGZPkNwh3-vRRUCg3cs09V_tXQVn2xOGlV-vuTeo8vl-vzTqeP7tMLUqee5cWCEWCJSHDCLsIKarXZ94WtFXFa9Yuk9U4iBWHJGxVOzRqzyh9tdKDfIpX1X6rIx2hmiwg5t" 
+                alt="Demo Video Thumbnail" 
                 className="absolute inset-0 w-full h-full object-cover"
-                controls
-                autoPlay
-                muted
-                loop
-              >
-                Tu navegador no soporta el elemento de video.
-              </video>
+              />
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                <motion.button 
+                  className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white"
+                  whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 255, 255, 0.3)' }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                >
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.1, 1],
+                      opacity: [1, 0.8, 1] 
+                    }}
+                    transition={{ 
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: 'easeInOut'
+                    }}
+                  >
+                    <svg className="w-10 h-10 ml-1" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2,.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2,.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"></path>
+                    </svg>
+                  </motion.div>
+                </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
       
       {/* Testimonials Section */}
       <Section className="py-16 sm:py-24 bg-subtle-light dark:bg-subtle-dark" id="testimonials">
         <div className="container mx-auto px-4 md:px-6">
-          <div 
+          <motion.div 
             className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('home.testimonials.title')}</h2>
             <p className="text-lg max-w-3xl mx-auto">{t('home.testimonials.subtitle')}</p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3].map((index) => (
-              <div
+              <motion.div
                 key={index}
                 className="bg-card-light dark:bg-card-dark rounded-lg shadow-lg p-8"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 rounded-full mr-4 overflow-hidden">
@@ -395,7 +607,7 @@ const Home = () => {
                   </div>
                 </div>
                 <p className="text-foreground-light/80 dark:text-foreground-dark/80 italic">"{index === 1 ? "Excelente trabajo, superó todas mis expectativas. El sitio web quedó perfecto y en tiempo récord." : index === 2 ? "La mejor inversión que hemos hecho. Nuestras ventas aumentaron un 30% desde que lanzamos la nueva web." : "Profesionalismo y calidad en cada detalle. Recomiendo ampliamente sus servicios."}"</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -406,8 +618,12 @@ const Home = () => {
       {/* CTA Section */}
       <Section className="py-12" id="cta">
         <div className="container mx-auto px-4 md:px-6">
-          <div 
+          <motion.div 
             className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 md:p-12 text-white text-center"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('home.cta.title')}</h2>
             <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">{t('home.cta.subtitle')}</p>
@@ -419,7 +635,7 @@ const Home = () => {
             >
               {t('home.cta.button')}
             </Button>
-          </div>
+          </motion.div>
         </div>
       </Section>
     </div>

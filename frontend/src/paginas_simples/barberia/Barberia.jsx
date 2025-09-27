@@ -107,7 +107,7 @@ const Barberia = () => {
             </div>
             <div className="service-card">
               <div className="service-img">
-                <img src="https://images.unsplash.com/photo-1634302086887-13b5281d8bf8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Tratamiento Capilar" />
+                <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tratamiento Capilar" />
               </div>
               <div className="service-info">
                 <h3>Tratamiento Capilar</h3>
@@ -128,7 +128,7 @@ const Barberia = () => {
               <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Galería 1" />
             </div>
             <div className="gallery-item">
-              <img src="https://images.unsplash.com/photo-1593702288056-f5834cfbadde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Galería 2" />
+              <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Galería 2" />
             </div>
             <div className="gallery-item">
               <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Galería 3" />
@@ -263,7 +263,7 @@ const Barberia = () => {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2023 BarberShop. Todos los derechos reservados.</p>
+            <p>&copy; {new Date().getFullYear()} BarberShop. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>

@@ -107,7 +107,15 @@
       "subject": "Subject",
       "message": "Your Message",
       "submit": "Send Message",
-      "successMessage": "Thank you! Your message has been sent successfully. We'll get back to you shortly."
+      "successMessage": "Thank you! Your message has been sent successfully. We'll get back to you shortly.",
+      "errorMessage": "There was an error sending your message. Please try again later.",
+      "placeholders": {
+        "name": "Your full name",
+        "email": "your.email@example.com",
+        "phone": "+1 234 567 8900",
+        "subject": "How can we help you?",
+        "message": "Tell us about your project or question..."
+      }
     },
     "info": {
       "title": "Contact Information",
@@ -152,7 +160,12 @@
       "cta": {
         "projects": "View projects",
         "contact": "Contact me"
-      }
+      },
+      "viewProjects": "View Projects"
+    },
+    "videoDemo": {
+      "title": "Demo Video",
+      "subtitle": "See our process and quality in action"
     },
     "services": {
       "title": "Services",
@@ -180,15 +193,33 @@
       "items": {
         "1": {
           "title": "Modern E-commerce",
-          "description": "Online store with attractive design and optimized user experience."
+          "description": "Online store with attractive design and optimized user experience.",
+          "translation": {
+            "es": {
+              "title": "E-commerce Moderno",
+              "description": "Tienda en línea con diseño atractivo y experiencia de usuario optimizada."
+            }
+          }
         },
         "2": {
           "title": "Management Application",
-          "description": "Comprehensive system for business resource management."
+          "description": "Comprehensive system for business resource management.",
+          "translation": {
+            "es": {
+              "title": "Aplicación de Gestión",
+              "description": "Sistema integral para la gestión de recursos empresariales."
+            }
+          }
         },
         "3": {
           "title": "Educational Platform",
-          "description": "Digital solution for online courses and educational content management."
+          "description": "Digital solution for online courses and educational content management.",
+          "translation": {
+            "es": {
+              "title": "Plataforma Educativa",
+              "description": "Solución digital para cursos en línea y gestión de contenido educativo."
+            }
+          }
         }
       }
     },
@@ -232,7 +263,26 @@
       "corporate": "Corporate websites",
       "custom": "Custom websites"
     },
+    "sections": {
+      "simple": {
+        "title": "Simple Websites",
+        "description": "Basic and effective web solutions for small businesses"
+      },
+      "corporate": {
+        "title": "Corporate Websites",
+        "description": "Professional solutions for medium and large companies"
+      },
+      "custom": {
+        "title": "Custom Websites",
+        "description": "Tailored solutions for specific business needs"
+      }
+    },
     "viewProject": "View project",
+    "simpleWebsites": {
+      "title": "Simple Websites",
+      "subtitle": "Examples of simple and elegant websites for different businesses",
+      "viewButton": "View Site"
+    },
     "sections": {
       "simple": {
         "title": "Simple websites",
@@ -256,6 +306,14 @@
         "portfolio": {
           "title": "Photographer Portfolio",
           "description": "A simple website to showcase a professional photographer's work."
+        },
+        "lawyer": {
+          "title": "Law Firm",
+          "description": "Professional website for a law firm with sections for services, legal team, testimonials, and contact."
+        },
+        "barbershop": {
+          "title": "Barbershop",
+          "description": "Modern website for a barbershop with sections for services, gallery, pricing, testimonials, and appointment booking."
         }
       },
       "corporate": {
@@ -397,14 +455,17 @@
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Let's talk about your project",
+    "subtitle": "We're here to help with your next project",
     "form": {
+      "title": "Send us a message",
       "name": "Name",
       "email": "Email",
       "phone": "Phone",
       "subject": "Subject",
       "message": "Message",
-      "submit": "Send message"
+      "submit": "Send Message",
+      "successMessage": "Your message has been sent successfully. We'll get back to you soon!",
+      "errorMessage": "There was an error sending your message. Please try again."
     },
     "info": {
       "title": "Contact information",
@@ -424,6 +485,10 @@
   "footer": {
     "rights": "All rights reserved",
     "privacy": "Privacy policy",
-    "terms": "Terms and conditions"
+    "terms": "Terms and conditions",
+    "description": "Custom web development, creating innovative and efficient digital solutions.",
+    "location": "Samacá centro, Colombia",
+    "phone": "+57 3121310650",
+    "email": "vegasebastian073@gmail.com"
   }
 }

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Soluciones Mike</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1193d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
+                        "foreground-light": "#0d171b",
+                        "foreground-dark": "#e7eff3",
+                        "card-light": "#ffffff",
+                        "card-dark": "#18262e",
+                        "subtle-light": "#e7eff3",
+                        "subtle-dark": "#20343f",
+                        "border-light": "#cfdfe7",
+                        "border-dark": "#2a4250"
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-foreground-light dark:text-foreground-dark">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clipRule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor" fillRule="evenodd"></path>
+</svg>
+<h2 class="text-xl font-bold">Soluciones Mike</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Inicio</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Proyectos</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Precios</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Contacto</a>
+</nav>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 text-sm font-semibold rounded-full bg-primary text-white">
+                            Español
+                        </button>
+<button class="px-3 py-1.5 text-sm font-semibold rounded-full bg-subtle-light dark:bg-subtle-dark text-foreground-light dark:text-foreground-dark hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+                            English
+                        </button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<section class="relative h-[60vh] min-h-[400px] flex items-center justify-center text-center text-white bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAiI_L6VJurcvFqto6d8EImdEFsaT427Sj7wbqyQrXFs24PPo8DOe_AStpmWaBf_YiLZf85eO2AKrerhHJBsWt6BuUSg8aWy3Zk2RON3MoQ2-bVc7EsgOVdu55Nkfkfy--T1MgplwmBPJ7j9vtW6P9r5DJmxWgsoSGNIvoHXrmnlxWmP6nOJDjdEws69fBaT4j-FTku_v7u1mZj8dS5WHARjUkRm8lrjcTPrBPyeLMpkLRdHrj_grXS8YodXjpNaDcYAW6SkU45fHep');">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+<h1 class="text-4xl md:text-6xl font-black tracking-tighter">Soluciones Mike</h1>
+<p class="max-w-2xl mx-auto text-lg md:text-xl text-white/90">
+                        Desarrollo web versátil para negocios de todos los tamaños, desde pequeñas empresas hasta plataformas de comercio electrónico.
+                    </p>
+<button class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg text-lg transition-all transform hover:scale-105">
+                        Ver Proyectos
+                    </button>
+</div>
+</section>
+<section class="py-16 sm:py-24">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl md:text-4xl font-bold">Proyectos Destacados</h2>
+<p class="mt-4 text-lg text-foreground-light/70 dark:text-foreground-dark/70">Un vistazo a nuestro trabajo más reciente</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-card-light dark:bg-card-dark rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+<img alt="Project 1" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJhpk5aqAgkwJXw0gmIVbfq7qsztdROoklA6nSjsmN9rhjgAqPd7LP2alkgYPLxVvp9ex6-N6G4EqnwuvxI_SC1A-uuSYMVUc-xiCe-nMdMcWzy7kmqpP2GzHWwl6XfRFvXiDOdogPWDFdK7RRhCIPfrIrgZNDuwBC4P6fjb-ytKH8mPB-57DOrx3b369TvaYS-ZLe9pRNMoa05NM9W7Zpg-dsSFIw563j3OI1U9suY40OqSxMvjJ5WjxDMj-5icRpgd8vH4yjHYMY"/>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Sitio Web para Restaurante 'Sabores Auténticos'</h3>
+<p class="text-sm text-foreground-light/70 dark:text-foreground-dark/70">Un sitio web elegante y funcional para un restaurante local, destacando su menú y ubicación.</p>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+<img alt="Project 2" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4EqySrnWFBy8aFdZWwsJjmKkem5dsdDBM85FNxOjrHvYNhDk1hvmdwywib8dEOqWIZ1X7XXvjHEEMCAmMnosjxaaiuIBvs3z5Grh3UxzA6sbvR2QVrkl1lgcCaR7uvyHruh1lcJzViiUAFwWWH3qSduaQwEMbdrvwEDpJyFRaHP6lylzUALuLg8XfPCdofQnG9mnoukM8d4lSsPznZozE1DcKmmyA3rUTGj9FhoImqDkd4kdTgAdpFWoiYMjcMda8FDPhWGADeUeM"/>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Plataforma de Comercio Electrónico 'Moda Urbana'</h3>
+<p class="text-sm text-foreground-light/70 dark:text-foreground-dark/70">Una tienda en línea completa con una interfaz de usuario intuitiva y un proceso de compra simplificado.</p>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+<img alt="Project 3" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ1KonaO389R8OSekfNp-zhl21hU7yRuNgl-lX8rCABSm0r-p0GuskGQhAavFCoD53SaIL36r6SBZmtg8Xwybtpw9Q5cPZVb9P9bKmbZ6b9t7VsUSFAqCAhosGwofJKJLbGAfbKLcDU1W3mhLP2D2w0SQZWxXLfii8H9k9KpERMCKrPe1Q2OW70SWThKI1RJMSmbUdjG8M2ociiXZl8T7If8J1JsKhNnglcjxBT_fHvrh-Ky6UqQlLQSl3ZXzyfDCgT1p5x50ahEyJ"/>
+<div class="p-6">
+<h3 class="text-xl font-semibold mb-2">Sitio Web Responsivo para 'Fitness Total'</h3>
+<p class="text-sm text-foreground-light/70 dark:text-foreground-dark/70">Un sitio web adaptable a cualquier dispositivo, con un enfoque en la información clara y el acceso fácil.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 sm:py-24 bg-subtle-light dark:bg-subtle-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl md:text-4xl font-bold">Video de Demostración</h2>
+<p class="mt-4 text-lg text-foreground-light/70 dark:text-foreground-dark/70">Vea nuestro proceso y la calidad en acción</p>
+</div>
+<div class="relative aspect-video rounded-lg overflow-hidden shadow-2xl max-w-4xl mx-auto">
+<img alt="Demo Video Thumbnail" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-DSoHFpTUvdCGSHYhM-5LT6_DKwIP6es504GR50JFzCzKhRAdTvsCJqiAJ6vFgOnnzaNhIpFVBJAlHPaYpWuCNPWiGgnmdblaJ4lSXsqUoZuZg7ESMjxS8fmTfP3ytNXl-gj9j8IOSfGZPkNwh3-vRRUCg3cs09V_tXQVn2xOGlV-vuTeo8vl-vzTqeP7tMLUqee5cWCEWCJSHDCLsIKarXZ94WtFXFa9Yuk9U4iBWHJGxVOzRqzyh9tdKDfIpX1X6rIx2hmiwg5t"/>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+<button class="w-20 h-20 bg-white/20 hover:bg-white/40 rounded-full flex items-center justify-center text-white transition-all transform hover:scale-110">
+<svg class="w-10 h-10 ml-1" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+<path d="M240,128a15.74,15.74,0,0,1-7.6,13.51L88.32,229.65a16,16,0,0,1-16.2.3A15.86,15.86,0,0,1,64,216.13V39.87a15.86,15.86,0,0,1,8.12-13.82,16,16,0,0,1,16.2.3L232.4,114.49A15.74,15.74,0,0,1,240,128Z"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 sm:py-24">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl md:text-4xl font-bold">Planes de Precios</h2>
+<p class="mt-4 text-lg text-foreground-light/70 dark:text-foreground-dark/70">Soluciones para cada necesidad y presupuesto.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+<div class="bg-card-light dark:bg-card-dark rounded-lg shadow-lg p-8 flex flex-col border border-border-light dark:border-border-dark">
+<h3 class="text-xl font-semibold mb-2">Básico</h3>
+<p class="text-4xl font-black mb-6">$500</p>
+<ul class="space-y-3 mb-8 flex-grow">
+<li class="flex items-center gap-3"><svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>Sitio web de una página</li>
+<li class="flex items-center gap-3"><svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>Diseño responsivo</li>
+<li class="flex items-center gap-3"><svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>Formulario de contacto</li>
+</ul>
+<button class="w-full bg-subtle-light dark:bg-subtle-dark text-foreground-light dark:text-foreground-dark font-bold py-2 px-4 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Seleccionar</button>
+</div>
+<div class="bg-primary text-white rounded-lg shadow-2xl p-8 flex flex-col transform scale-105 border-2 border-primary">
+<h3 class="text-xl font-semibold mb-2">Estándar</h3>
+<p class="text-4xl font-black mb-6">$1,200</p>
+<ul class="space-y-3 mb-8 flex-grow">
+<li class="flex items-center gap-3"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>Sitio web de hasta 5 páginas</li>
+<li class="flex items-center gap-3"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>Diseño responsivo</li>
+<li class="flex items-center gap-3"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>Integración de redes sociales</li>
+<li class="flex items-center gap-3"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>SEO básico</li>
+</ul>
+<button class="w-full bg-white text-primary font-bold py-2 px-4 rounded-lg hover:bg-white/90 transition-colors">Seleccionar</button>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-lg shadow-lg p-8 flex flex-col border border-border-light dark:border-border-dark">
+<h3 class="text-xl font-semibold mb-2">Premium</h3>
+<p class="text-4xl font-black mb-6">$2,500</p>
+<ul class="space-y-3 mb-8 flex-grow">
+<li class="flex items-center gap-3"><svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>Sitio web ilimitado</li>
+<li class="flex items-center gap-3"><svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>Diseño responsivo</li>
+<li class="flex items-center gap-3"><svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>SEO avanzado</li>
+<li class="flex items-center gap-3"><svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>Soporte técnico prioritario</li>
+</ul>
+<button class="w-full bg-subtle-light dark:bg-subtle-dark text-foreground-light dark:text-foreground-dark font-bold py-2 px-4 rounded-lg hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Seleccionar</button>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 sm:py-24">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl md:text-4xl font-bold">Contáctanos</h2>
+<p class="mt-4 text-lg text-foreground-light/70 dark:text-foreground-dark/70">¿Listo para empezar? Envíanos un mensaje.</p>
+</div>
+<form class="max-w-xl mx-auto space-y-6">
+<div>
+<label class="block text-sm font-medium mb-2" for="name">Nombre</label>
+<input class="w-full bg-subtle-light dark:bg-subtle-dark border-border-light dark:border-border-dark rounded-lg p-3 focus:ring-primary focus:border-primary transition" id="name" placeholder="Tu nombre" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2" for="email">Correo electrónico</label>
+<input class="w-full bg-subtle-light dark:bg-subtle-dark border-border-light dark:border-border-dark rounded-lg p-3 focus:ring-primary focus:border-primary transition" id="email" placeholder="Tu correo electrónico" type="email"/>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2" for="message">Mensaje</label>
+<textarea class="w-full bg-subtle-light dark:bg-subtle-dark border-border-light dark:border-border-dark rounded-lg p-3 focus:ring-primary focus:border-primary transition" id="message" placeholder="Tu mensaje" rows="5"></textarea>
+</div>
+<div class="text-right">
+<button class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg text-lg transition-all transform hover:scale-105" type="submit">
+                                Enviar Mensaje
+                            </button>
+</div>
+</form>
+</div>
+</section>
+</main>
+</div>
+
+</body></html>

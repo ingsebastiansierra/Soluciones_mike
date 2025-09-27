@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
+import LayoutNoFooter from './components/layout/LayoutNoFooter'
 import './App.css'
 
 // Lazy load pages for better performance
@@ -26,9 +27,11 @@ function App() {
             <Route path="pricing" element={<Pricing />} />
             <Route path="specifications" element={<Specifications />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="paginas_simples/abogado" element={<Abogado />} />
-            <Route path="paginas_simples/barberia" element={<Barberia />} />
             <Route path="*" element={<NotFound />} />
+          </Route>
+          <Route path="/paginas_simples" element={<LayoutNoFooter />}>
+            <Route path="abogado" element={<Abogado />} />
+            <Route path="barberia" element={<Barberia />} />
           </Route>
         </Routes>
       </Suspense>

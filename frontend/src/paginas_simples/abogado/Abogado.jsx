@@ -227,7 +227,7 @@ const Abogado = () => {
           <div className="footer-content">
             <div className="footer-logo">
               <h2>González & Asociados</h2>
-              <p>Bufete Jurídico</p>
+              <p>Bufete Jurídico de Confianza</p>
             </div>
             <div className="footer-links">
               <h3>Enlaces Rápidos</h3>
@@ -250,7 +250,7 @@ const Abogado = () => {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2023 González & Asociados. Todos los derechos reservados.</p>
+            <p>&copy; {new Date().getFullYear()} González & Asociados. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>

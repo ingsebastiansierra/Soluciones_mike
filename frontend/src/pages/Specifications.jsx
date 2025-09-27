@@ -71,7 +71,7 @@ const Specifications = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6 overflow-hidden">
-              <AnimatedText text={t('specs.title', 'Especificaciones')} />
+              <AnimatedText text={t('specs.title')} />
             </h1>
             
             <motion.p 
@@ -80,7 +80,7 @@ const Specifications = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              {t('specs.subtitle', 'Cómo trabajo y qué necesito para comenzar')}
+              {t('specs.subtitle')}
             </motion.p>
             
             {/* Elemento decorativo animado */}
@@ -112,7 +112,7 @@ const Specifications = () => {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-3 relative inline-block">
-                {t('specs.process.title', 'Proceso de trabajo')}
+                {t('specs.process.title')}
                 <motion.span 
                   className="absolute -bottom-2 left-0 w-full h-1 bg-accent"
                   initial={{ scaleX: 0, originX: 0 }}
@@ -223,7 +223,7 @@ const Specifications = () => {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-3 relative inline-block">
-                {t('specs.requirements.title', 'Lo que necesito para comenzar')}
+                {t('specs.requirements.title')}
                 <motion.span 
                   className="absolute -bottom-2 left-0 w-full h-1 bg-accent"
                   initial={{ scaleX: 0, originX: 0 }}
@@ -314,7 +314,7 @@ const Specifications = () => {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-3 relative inline-block">
-                {t('specs.deliverables.title', 'Lo que entregaré')}
+                {t('specs.deliverables.title')}
                 <motion.span 
                   className="absolute -bottom-2 left-0 w-full h-1 bg-accent"
                   initial={{ scaleX: 0, originX: 0 }}

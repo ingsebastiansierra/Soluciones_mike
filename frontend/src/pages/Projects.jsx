@@ -8,8 +8,8 @@ import ProjectCard from '../components/projects/ProjectCard';
 const mockProjects = [
   {
     id: 1,
-    title: 'Bufete de Abogados',
-    description: 'Sitio web profesional para un bufete de abogados con secciones para servicios, equipo legal, testimonios y contacto.',
+    titleKey: 'projects.examples.simple.lawyer.title',
+    descriptionKey: 'projects.examples.simple.lawyer.description',
     image: '/images/websites/lawyer.svg',
     category: 'simple',
     technologies: ['React', 'CSS'],
@@ -17,8 +17,8 @@ const mockProjects = [
   },
   {
     id: 2,
-    title: 'Barbería',
-    description: 'Sitio web moderno para una barbería con secciones para servicios, galería, precios, testimonios y reserva de citas.',
+    titleKey: 'projects.examples.simple.barbershop.title',
+    descriptionKey: 'projects.examples.simple.barbershop.description',
     image: '/images/websites/barbershop.svg',
     category: 'simple',
     technologies: ['React', 'CSS'],
@@ -90,12 +90,12 @@ const Projects = () => {
   };
 
   // Texto para animar letra por letra
-  const titleText = "Proyectos";
+  const titleText = t('projects.title');
 
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <Section className="py-20 min-h-[70vh] flex items-center" id="projects-hero">
+      <Section className="py-20 min-h-[40vh] flex items-center" id="projects-hero">
         <motion.div 
           ref={heroRef}
           className="text-center mb-16 relative z-10 w-full"
@@ -124,14 +124,7 @@ const Projects = () => {
             </motion.div>
           </div>
           
-          <motion.p 
-            className="text-xl max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-          >
-            Explora nuestro portafolio de trabajos realizados
-          </motion.p>
+          {/* Subtítulo eliminado según solicitud del cliente */}
           
           <motion.div 
             className="mt-8"
@@ -169,7 +162,7 @@ const Projects = () => {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-3 relative inline-block">
-                Sitios Web Simples
+                {t('projects.sections.simple.title')}
                 <motion.span 
                   className="absolute -bottom-2 left-0 w-full h-1 bg-accent"
                   initial={{ scaleX: 0, originX: 0 }}
@@ -185,7 +178,7 @@ const Projects = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
-                Soluciones web básicas y efectivas para pequeños negocios
+                {t('projects.sections.simple.description')}
               </motion.p>
             </motion.div>
           </div>
@@ -232,7 +225,7 @@ const Projects = () => {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-3 relative inline-block">
-                Sitios Web Corporativos
+                {t('projects.sections.corporate.title')}
                 <motion.span 
                   className="absolute -bottom-2 left-0 w-full h-1 bg-accent"
                   initial={{ scaleX: 0, originX: 0 }}
@@ -248,7 +241,7 @@ const Projects = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
-                Soluciones profesionales para empresas y organizaciones
+                {t('projects.sections.corporate.description')}
               </motion.p>
             </motion.div>
           </div>
@@ -295,7 +288,7 @@ const Projects = () => {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-3 relative inline-block">
-                Sitios Web Personalizados
+                {t('projects.sections.custom.title')}
                 <motion.span 
                   className="absolute -bottom-2 left-0 w-full h-1 bg-accent"
                   initial={{ scaleX: 0, originX: 0 }}
@@ -311,7 +304,7 @@ const Projects = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
-                Soluciones a medida para necesidades específicas y proyectos complejos
+                {t('projects.sections.custom.description')}
               </motion.p>
             </motion.div>
           </div>

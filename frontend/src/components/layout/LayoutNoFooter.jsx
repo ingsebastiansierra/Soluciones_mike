@@ -1,17 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
-import Footer from './Footer';
 
-const Layout = () => {
+const LayoutNoFooter = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex-grow ">
         <Outlet />
       </main>
-      <Footer />
     </div>
   );
 };
 
-export default Layout;
+export default LayoutNoFooter;
