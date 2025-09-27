@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="50" viewBox="0 0 200 50">
+  <style>
+    .logo-text { fill: #000000; }
+    .logo-accent { fill: #000000; }
+    @media (prefers-color-scheme: dark) {
+      .logo-text { fill: #ffffff; }
+      .logo-accent { fill: #ffffff; }
+    }
+  </style>
+  <g>
+    <!-- Círculo del logo -->
+    <circle cx="25" cy="25" r="20" fill="none" stroke-width="2" class="logo-text" />
+    <!-- Letra M estilizada -->
+    <path d="M15 15 L25 30 L35 15 M15 15 L15 35 M35 15 L35 35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" class="logo-text" />
+    <!-- Texto Soluciones Mike -->
+    <text x="60" y="30" font-family="'Playfair Display', serif" font-size="20" font-weight="700" class="logo-text">Soluciones Mike</text>
+  </g>
+</svg>

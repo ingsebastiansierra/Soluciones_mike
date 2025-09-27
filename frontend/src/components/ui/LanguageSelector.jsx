@@ -12,7 +12,7 @@ const LanguageSelector = () => {
   return (
     <div className="relative inline-block text-left">
       <div className="flex items-center space-x-2">
-        <span className="text-sm font-medium">{t('common.language')}:</span>
+        <span className="text-sm font-medium">{t('common.language')}</span>
         <div className="flex space-x-2">
           <button
             className={`px-2 py-1 text-sm rounded-md transition-all ${currentLanguage === 'es' ? 'bg-accent text-white' : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'}`}

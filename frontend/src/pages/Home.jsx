@@ -8,51 +8,51 @@ import ProjectCard from '../components/projects/ProjectCard';
 
 // Se eliminaron las animaciones de texto con efecto de escritura
 
-// Proyectos destacados
-const projects = [
+// Datos de proyectos para el carrusel 3D
+const projectsData = [
   {
-    image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    id: 1,
+    title: "Barbería",
+    description: "Sitio web moderno para una barbería con secciones para servicios, galería, precios, testimonios y reserva de citas.",
+    category: "simple",
+    image: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    url: "/paginas_simples/barberia",
+    technologies: ['React', 'CSS']
   },
   {
-    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+    id: 2,
+    title: "Bufete de Abogados",
+    description: "Sitio web profesional para un bufete de abogados con secciones para servicios, equipo legal, testimonios y contacto.",
+    category: "simple",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    url: "/paginas_simples/abogado",
+    technologies: ['React', 'CSS']
   },
   {
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+    id: 3,
+    title: "Restaurante",
+    description: "Sitio web elegante para un restaurante con menú interactivo, reservas online y galería de platos.",
+    category: "simple",
+    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    url: "/paginas_simples/restaurante",
+    technologies: ['React', 'CSS']
   }
 ];
 
-// Componente de carrusel para proyectos destacados
-const ProjectsCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(null);
-  const carouselRef = useRef(null);
+
+
+const Home = () => {
+  const { t } = useTranslation();
   
-  // Datos de proyectos para el carrusel - solo barbería y abogados
-  const projects = [
-    {
-      id: 1,
-      title: "Barbería",
-      description: "Sitio web moderno para una barbería con secciones para servicios, galería, precios, testimonios y reserva de citas.",
-      category: "simple",
-      image: "/images/websites/barbershop.svg",
-      url: "/paginas_simples/barberia",
-      technologies: ['React', 'CSS']
-    },
-    {
-      id: 2,
-      title: "Bufete de Abogados",
-      description: "Sitio web profesional para un bufete de abogados con secciones para servicios, equipo legal, testimonios y contacto.",
-      category: "simple",
-      image: "/images/websites/lawyer.svg",
-      url: "/paginas_simples/abogado",
-      technologies: ['React', 'CSS']
-    }
-  ];
+  // Estado para el carrusel 3D
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isRotating, setIsRotating] = useState(false);
+  const [direction, setDirection] = useState(null);
   
   // Verificar que las imágenes se carguen correctamente
   useEffect(() => {
     // Precargar imágenes
-    projects.forEach(project => {
+    projectsData.forEach(project => {
       const img = new Image();
       img.src = project.image;
     });
@@ -60,100 +60,35 @@ const ProjectsCarousel = () => {
 
   // Navegar al proyecto anterior
   const prevSlide = () => {
-    setDirection('right');
+    if (isRotating) return;
+    setIsRotating(true);
+    setDirection('left');
     setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? projects.length - 1 : prevIndex - 1
+      prevIndex === 0 ? projectsData.length - 1 : prevIndex - 1
     );
+    setTimeout(() => setIsRotating(false), 100);
   };
 
   // Navegar al proyecto siguiente
   const nextSlide = () => {
-    setDirection('left');
+    if (isRotating) return;
+    setIsRotating(true);
+    setDirection('right');
     setCurrentIndex((prevIndex) => 
-      prevIndex === projects.length - 1 ? 0 : prevIndex + 1
+      prevIndex === projectsData.length - 1 ? 0 : prevIndex + 1
     );
+    setTimeout(() => setIsRotating(false), 100);
   };
-
-  // Se eliminaron las variantes de animación para el carrusel
-
+  
   // Efecto para autoplay del carrusel
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
+      if (!isRotating) {
+        nextSlide();
+      }
     }, 8000); // Aumentado a 8 segundos para mejor visualización
     return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="relative overflow-hidden w-full" ref={carouselRef}>
-      <div className="aspect-w-16 aspect-h-9 w-full max-w-5xl mx-auto relative">
-        <div>
-          <div
-            key={currentIndex}
-            className="absolute inset-0 w-full h-full"
-          >
-            <div className="h-full">
-              {/* Usar el componente ProjectCard para mantener el mismo diseño que en la sección de sitios web simples */}
-              <ProjectCard 
-                id={projects[currentIndex].id}
-                title={projects[currentIndex].title}
-                description={projects[currentIndex].description}
-                image={projects[currentIndex].image}
-                category={projects[currentIndex].category}
-                technologies={projects[currentIndex].technologies}
-                url={projects[currentIndex].url}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Controles de navegación */}
-      <div className="flex justify-center mt-6 space-x-4">
-        <button 
-          onClick={prevSlide} 
-          className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-accent hover:text-white transition-colors"
-          aria-label="Proyecto anterior"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <div className="flex space-x-2">
-          {projects.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setDirection(index > currentIndex ? 'left' : 'right');
-                setCurrentIndex(index);
-              }}
-              className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-accent' : 'bg-gray-300 dark:bg-gray-600'}`}
-              aria-label={`Ir al proyecto ${index + 1}`}
-            />
-          ))}
-        </div>
-        <button 
-          onClick={nextSlide} 
-          className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-accent hover:text-white transition-colors"
-          aria-label="Proyecto siguiente"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
-      
-      <div className="text-center mt-4">
-        <Button to={projects[currentIndex].url} variant="primary" size="md">
-          Ver proyecto
-        </Button>
-      </div>
-    </div>
-  );
-};
-
-const Home = () => {
-  const { t } = useTranslation();
+  }, [isRotating]);
 
   return (
     <div className="w-full">
@@ -249,39 +184,116 @@ const Home = () => {
             <p 
               className="mt-4 text-lg text-foreground-light/70 dark:text-foreground-dark/70 max-w-2xl mx-auto"
             >
-              
+              {t('home.projects.subtitle')}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div 
-                key={index}
-                className="bg-card-light dark:bg-card-dark rounded-lg overflow-hidden shadow-lg group"
-                
-                
+          {/* Carrusel 3D de proyectos */}
+          <div className="relative overflow-hidden w-full py-12">
+            <div className="w-full max-w-5xl mx-auto relative perspective-1000 h-[500px]">
+              {/* Botón de navegación izquierdo */}
+              <button 
+                onClick={prevSlide}
+                disabled={isRotating}
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-black border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors disabled:opacity-50 shadow-lg"
+                aria-label="Proyecto anterior"
               >
-                <div className="overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={t(`home.projects.items.${index+1}.title`)} 
-                    className="w-full h-48 object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 
-                    className="text-xl font-semibold mb-2"
-                  >
-                    {t(`home.projects.items.${index+1}.title`)}
-                  </h3>
-                  <p 
-                    className="text-sm text-foreground-light/70 dark:text-foreground-dark/70"
-                  >
-                    {t(`home.projects.items.${index+1}.description`)}
-                  </p>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              {/* Botón de navegación derecho */}
+              <button 
+                onClick={nextSlide}
+                disabled={isRotating}
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-black border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors disabled:opacity-50 shadow-lg"
+                aria-label="Proyecto siguiente"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <div className="absolute inset-0 flex items-center justify-center">
+                {/* Carrusel 3D */}
+                <div 
+                  className="relative w-full h-full flex items-center justify-center"
+                  style={{
+                    perspective: '1500px',
+                    transformStyle: 'preserve-3d',
+                    transition: 'transform 0.4s ease'
+                  }}
+                >
+                  {projectsData.map((project, index) => {
+                    // Calcular la posición de cada tarjeta en el carrusel 3D
+                    let position = index - currentIndex;
+                    
+                    // Ajustar para el efecto circular
+                    if (position < -1) {
+                      position += projectsData.length;
+                    } else if (position > 1) {
+                      position -= projectsData.length;
+                    }
+                    
+                    // Calcular las transformaciones 3D
+                    const rotateY = position * 45; // Rotación en el eje Y
+                    const translateZ = position === 0 ? 0 : -300; // Profundidad
+                    const translateX = position * 350; // Posición horizontal
+                    const scale = position === 0 ? 1 : 0.8; // Escala
+                    const opacity = position === 0 ? 1 : 0.7; // Opacidad
+                    const zIndex = position === 0 ? 10 : 5; // z-index
+                    
+                    return (
+                      <div 
+                        key={project.id}
+                        className="absolute w-full max-w-md transition-all duration-100 ease-in-out"
+                        style={{
+                          transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                          opacity,
+                          zIndex,
+                          transition: 'all 0.4s ease'
+                        }}
+                      >
+                        <ProjectCard 
+                          id={project.id}
+                          title={project.title}
+                          description={project.description}
+                          image={project.image}
+                          category={project.category}
+                          technologies={project.technologies}
+                          url={project.url}
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Indicadores de navegación */}
+            <div className="flex justify-center mt-8 space-x-3">
+              {projectsData.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    if (isRotating) return;
+                    setIsRotating(true);
+                    setCurrentIndex(index);
+                    setTimeout(() => setIsRotating(false), 600);
+                  }}
+                  disabled={isRotating}
+                  className={`w-4 h-4 rounded-full transition-all ${index === currentIndex ? 'bg-black dark:bg-white scale-125' : 'bg-gray-300 dark:bg-gray-600'} disabled:opacity-50`}
+                  aria-label={`Ir al proyecto ${index + 1}`}
+                />
+              ))}
+            </div>
+            
+            <div className="text-center mt-6">
+              <Button to={projectsData[currentIndex].url} variant="primary" size="md" className="bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200">
+                Ver proyecto
+              </Button>
+            </div>
           </div>
 
           <div 

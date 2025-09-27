@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './BarberiaStyles.css';
 
 const Barberia = () => {
+  const [menuActive, setMenuActive] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const toggleMenu = () => {
+    setMenuActive(!menuActive);
+  };
+  
+  // Función para manejar el carrusel de testimonios
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev === 2 ? 0 : prev + 1));
+  };
+  
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? 2 : prev - 1));
+  };
+  
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+  
+  // Autoplay para el carrusel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNextSlide();
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="barberia-page">
       <header className="barberia-header">
@@ -11,7 +40,7 @@ const Barberia = () => {
             <h1>BarberShop</h1>
             <p>Estilo & Tradición</p>
           </div>
-          <nav>
+          <nav className={menuActive ? 'active' : ''}>
             <ul>
               <li><a href="#inicio">Inicio</a></li>
               <li><a href="#nosotros">Nosotros</a></li>
@@ -20,9 +49,14 @@ const Barberia = () => {
               <li><a href="#contacto">Contacto</a></li>
             </ul>
           </nav>
-          <div className="menu-toggle">
+          <div className="menu-toggle" onClick={toggleMenu}>
             <i className="fas fa-bars"></i>
           </div>
+          {menuActive && (
+            <div className="menu-close" onClick={toggleMenu}>
+              <i className="fas fa-times"></i>
+            </div>
+          )}
         </div>
       </header>
 
@@ -146,6 +180,80 @@ const Barberia = () => {
         </div>
       </section>
 
+      {/* Testimonios Section */}
+      <section id="testimonios" className="testimonials">
+        <div className="container">
+          <h2 className="section-title">Testimonios</h2>
+          <p className="section-subtitle">Lo que nuestros clientes dicen sobre nosotros</p>
+          
+          <div className="testimonial-carousel">
+            <div className="testimonial-slider" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+              <div className={`testimonial-card ${currentSlide === 0 ? 'active' : ''}`}>
+                <div className="testimonial-content">
+                  <i className="fas fa-quote-left"></i>
+                  <p>"El mejor corte de pelo que he tenido. El ambiente es genial y el servicio es de primera clase. Volveré seguro."</p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-img">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Mendoza" />
+                  </div>
+                  <div className="author-info">
+                    <h4>Carlos Mendoza</h4>
+                    <p>Cliente desde 2021</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className={`testimonial-card ${currentSlide === 1 ? 'active' : ''}`}>
+                <div className="testimonial-content">
+                  <i className="fas fa-quote-left"></i>
+                  <p>"Excelente atención y profesionalismo. Mi barba nunca había lucido tan bien. Totalmente recomendado."</p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-img">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Miguel Ángel" />
+                  </div>
+                  <div className="author-info">
+                    <h4>Miguel Ángel</h4>
+                    <p>Cliente desde 2020</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className={`testimonial-card ${currentSlide === 2 ? 'active' : ''}`}>
+                <div className="testimonial-content">
+                  <i className="fas fa-quote-left"></i>
+                  <p>"Ambiente acogedor y barberos muy profesionales. El mejor lugar para cuidar tu imagen personal."</p>
+                </div>
+                <div className="testimonial-author">
+                  <div className="author-img">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Javier Ruiz" />
+                  </div>
+                  <div className="author-info">
+                    <h4>Javier Ruiz</h4>
+                    <p>Cliente desde 2019</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="carousel-controls">
+              <button className="carousel-control prev" onClick={handlePrevSlide}>
+                <i className="fas fa-chevron-left"></i>
+              </button>
+              <div className="carousel-dots">
+                <span className={`dot ${currentSlide === 0 ? 'active' : ''}`} onClick={() => goToSlide(0)}></span>
+                <span className={`dot ${currentSlide === 1 ? 'active' : ''}`} onClick={() => goToSlide(1)}></span>
+                <span className={`dot ${currentSlide === 2 ? 'active' : ''}`} onClick={() => goToSlide(2)}></span>
+              </div>
+              <button className="carousel-control next" onClick={handleNextSlide}>
+                <i className="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <section id="contacto" className="contact">
         <div className="container">
           <h2 className="section-title">Contacto y Reservas</h2>

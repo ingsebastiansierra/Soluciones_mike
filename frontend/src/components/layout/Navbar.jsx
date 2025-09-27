@@ -36,13 +36,10 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">  
         <div className="flex items-center justify-between h-16">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-5">
           <Link to="/">
             <div className="flex items-center gap-4 hover:opacity-80 transition-opacity">
-              <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <path clipRule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill="currentColor" fillRule="evenodd"></path>
-              </svg>
-              <h2 className="text-xl font-bold">Soluciones Mike</h2>
+              <img src="/images/logito.png" alt="Soluciones Mike Logo" className="h-11 w-auto text-primary" />
             </div>
           </Link>
         </div>
@@ -61,9 +58,49 @@ const Navbar = () => {
         
         <div className="flex items-center gap-2">
           <LanguageSelector />
+          {/* Botón de hamburguesa para móviles */}
+          <button 
+            className="md:hidden ml-2 p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            onClick={toggleMobileMenu}
+            aria-label="Menú"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {isMobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
 
       </div>
+      
+      {/* Menú móvil desplegable */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden border-t border-border-light dark:border-border-dark"
+          >
+            <div className="py-3 px-4 space-y-3">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="block py-2 text-sm font-medium hover:text-primary transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       </div>
 
 

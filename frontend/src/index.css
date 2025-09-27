@@ -7,14 +7,26 @@
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    --color-primary: 0, 0, 0; /* Negro */
+    --color-secondary: 255, 255, 255; /* Blanco */
+    --color-accent-rgb: 0, 0, 0; /* Negro para acento */
   }
 
   body {
-    @apply bg-light-bg text-text-primary min-h-screen;
+    @apply bg-white text-black min-h-screen;
   }
   
   .dark body {
-    @apply bg-dark-bg text-text-light;
+    @apply bg-black text-white;
+  }
+
+  /* Estilos para la perspectiva 3D */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
   }
 }
 

@@ -15,6 +15,7 @@ export default defineConfig({
     port: 5173,
     open: true,
     cors: true,
+    host: true, // Permite acceso desde la red
     fs: {
       // Permitir servir archivos desde fuera del directorio raíz
       allow: ['../']

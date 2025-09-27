@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const ProjectCard = ({ id, titleKey, title, descriptionKey, description, image, category, technologies, url }) => {
   const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef(null);
   
   // Mouse position tracking for spotlight effect
   const mouseX = useMotionValue(0);
@@ -74,8 +75,17 @@ const ProjectCard = ({ id, titleKey, title, descriptionKey, description, image, 
     }
   };
 
+  // Manejar el clic para navegar al proyecto
+  const handleClick = (e) => {
+    if (url) {
+      e.preventDefault();
+      window.location.href = url;
+    }
+  };
+
   return (
     <motion.div
+      ref={cardRef}
       className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg relative"
       variants={cardVariants}
       initial="initial"
@@ -84,6 +94,7 @@ const ProjectCard = ({ id, titleKey, title, descriptionKey, description, image, 
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
     >
       {/* Spotlight effect */}
       <motion.div 
@@ -91,7 +102,15 @@ const ProjectCard = ({ id, titleKey, title, descriptionKey, description, image, 
         style={{ background: spotlightBackground }}
       />
       
-      <div className="relative overflow-hidden group h-64">
+      {/* Imagen del proyecto */}
+      <motion.div 
+        className="relative overflow-hidden group h-64 w-full"
+        style={{ 
+          position: "relative",
+          top: 0,
+          left: 0
+        }}
+      >
         {/* Imagen del proyecto con animación */}
         <motion.div
           className="w-full h-full"
@@ -165,7 +184,9 @@ const ProjectCard = ({ id, titleKey, title, descriptionKey, description, image, 
             )}
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
+
+
       
       <div className="p-6">
         <motion.h3 
