@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="500" height="300">
+  <!-- Plato -->
+  <ellipse cx="250" cy="230" rx="150" ry="30" fill="#f5f5f5" stroke="#ccc" stroke-width="2"/>
+  
+  <!-- Base de la pizza -->
+  <circle cx="250" cy="170" r="100" fill="#FFD54F" stroke="#FFC107" stroke-width="2"/>
+  
+  <!-- Borde de la pizza -->
+  <path d="M250,70 A100,100 0 1,0 250,270 A100,100 0 1,0 250,70 Z M250,90 A80,80 0 1,1 250,250 A80,80 0 1,1 250,90 Z" fill="#FFA000" stroke="#FF8F00" stroke-width="1"/>
+  
+  <!-- Salsa de tomate -->
+  <circle cx="250" cy="170" r="80" fill="#E53935" stroke="#D32F2F" stroke-width="1" opacity="0.7"/>
+  
+  <!-- Queso -->
+  <circle cx="250" cy="170" r="75" fill="#FFF9C4" stroke="#FFF59D" stroke-width="1" opacity="0.8"/>
+  
+  <!-- Chorizo -->
+  <circle cx="220" cy="140" r="10" fill="#D84315" stroke="#BF360C" stroke-width="1"/>
+  <circle cx="280" cy="140" r="10" fill="#D84315" stroke="#BF360C" stroke-width="1"/>
+  <circle cx="250" cy="200" r="10" fill="#D84315" stroke="#BF360C" stroke-width="1"/>
+  <circle cx="200" cy="170" r="10" fill="#D84315" stroke="#BF360C" stroke-width="1"/>
+  <circle cx="300" cy="170" r="10" fill="#D84315" stroke="#BF360C" stroke-width="1"/>
+  
+  <!-- Maíz -->
+  <circle cx="230" cy="170" r="5" fill="#FFF176" stroke="#FFEE58" stroke-width="1"/>
+  <circle cx="270" cy="170" r="5" fill="#FFF176" stroke="#FFEE58" stroke-width="1"/>
+  <circle cx="250" cy="150" r="5" fill="#FFF176" stroke="#FFEE58" stroke-width="1"/>
+  <circle cx="250" cy="190" r="5" fill="#FFF176" stroke="#FFEE58" stroke-width="1"/>
+  <circle cx="220" cy="200" r="5" fill="#FFF176" stroke="#FFEE58" stroke-width="1"/>
+  <circle cx="280" cy="200" r="5" fill="#FFF176" stroke="#FFEE58" stroke-width="1"/>
+  
+  <!-- Hogao (cebolla y tomate) -->
+  <circle cx="210" cy="120" r="8" fill="#FF8A65" stroke="#FF5722" stroke-width="1" opacity="0.8"/>
+  <circle cx="290" cy="120" r="8" fill="#FF8A65" stroke="#FF5722" stroke-width="1" opacity="0.8"/>
+  <circle cx="210" cy="220" r="8" fill="#FF8A65" stroke="#FF5722" stroke-width="1" opacity="0.8"/>
+  <circle cx="290" cy="220" r="8" fill="#FF8A65" stroke="#FF5722" stroke-width="1" opacity="0.8"/>
+  
+  <!-- Aguacate -->
+  <ellipse cx="240" cy="120" rx="10" ry="7" fill="#AED581" stroke="#7CB342" stroke-width="1"/>
+  <ellipse cx="260" cy="220" rx="10" ry="7" fill="#AED581" stroke="#7CB342" stroke-width="1"/>
+  <ellipse cx="190" cy="190" rx="10" ry="7" fill="#AED581" stroke="#7CB342" stroke-width="1"/>
+  <ellipse cx="310" cy="150" rx="10" ry="7" fill="#AED581" stroke="#7CB342" stroke-width="1"/>
+  
+  <!-- Título -->
+  <text x="250" y="50" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">Pizza Criolla</text>
+  <text x="250" y="80" font-family="Arial" font-size="16" text-anchor="middle" fill="#666">Con chorizo, maíz, hogao y aguacate</text>
+</svg>

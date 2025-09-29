@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="500" height="300">
+  <!-- Plato -->
+  <ellipse cx="250" cy="230" rx="150" ry="30" fill="#f5f5f5" stroke="#ccc" stroke-width="2"/>
+  
+  <!-- Sushi roll (vista frontal) -->
+  <g transform="translate(150, 120)">
+    <!-- Nori exterior -->
+    <rect x="0" y="0" width="200" height="80" rx="40" ry="40" fill="#263238" stroke="#212121" stroke-width="1"/>
+    
+    <!-- Arroz -->
+    <rect x="5" y="5" width="190" height="70" rx="35" ry="35" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="1"/>
+    
+    <!-- Relleno -->
+    <ellipse cx="100" cy="40" rx="60" ry="25" fill="#FF8A65" stroke="#FF5722" stroke-width="1"/>
+    
+    <!-- Aguacate -->
+    <ellipse cx="70" cy="40" rx="15" ry="10" fill="#AED581" stroke="#7CB342" stroke-width="1"/>
+    
+    <!-- Mango -->
+    <ellipse cx="100" cy="40" rx="15" ry="10" fill="#FFD54F" stroke="#FFC107" stroke-width="1"/>
+    
+    <!-- Queso crema -->
+    <ellipse cx="130" cy="40" rx="15" ry="10" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="1"/>
+    
+    <!-- Coco rallado (cobertura) -->
+    <rect x="5" y="5" width="190" height="20" rx="10" ry="10" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="1" opacity="0.8"/>
+    <line x1="20" y1="15" x2="180" y2="15" stroke="#EEEEEE" stroke-width="1" stroke-dasharray="2,2"/>
+  </g>
+  
+  <!-- Sushi roll (piezas cortadas) -->
+  <g transform="translate(180, 170)">
+    <ellipse cx="0" cy="0" rx="25" ry="20" fill="#263238" stroke="#212121" stroke-width="1"/>
+    <ellipse cx="0" cy="0" rx="20" ry="15" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="1"/>
+    <ellipse cx="0" cy="0" rx="10" ry="7" fill="#FF8A65" stroke="#FF5722" stroke-width="1"/>
+    <ellipse cx="-5" cy="0" rx="3" ry="2" fill="#AED581" stroke="#7CB342" stroke-width="1"/>
+    <ellipse cx="0" cy="0" rx="3" ry="2" fill="#FFD54F" stroke="#FFC107" stroke-width="1"/>
+    <ellipse cx="5" cy="0" rx="3" ry="2" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="1"/>
+    <ellipse cx="0" cy="-7" rx="20" ry="3" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="0.5" opacity="0.8"/>
+  </g>
+  
+  <g transform="translate(240, 170)">
+    <ellipse cx="0" cy="0" rx="25" ry="20" fill="#263238" stroke="#212121" stroke-width="1"/>
+    <ellipse cx="0" cy="0" rx="20" ry="15" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="1"/>
+    <ellipse cx="0" cy="0" rx="10" ry="7" fill="#FF8A65" stroke="#FF5722" stroke-width="1"/>
+    <ellipse cx="-5" cy="0" rx="3" ry="2" fill="#AED581" stroke="#7CB342" stroke-width="1"/>
+    <ellipse cx="0" cy="0" rx="3" ry="2" fill="#FFD54F" stroke="#FFC107" stroke-width="1"/>
+    <ellipse cx="5" cy="0" rx="3" ry="2" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="1"/>
+    <ellipse cx="0" cy="-7" rx="20" ry="3" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="0.5" opacity="0.8"/>
+  </g>
+  
+  <g transform="translate(300, 170)">
+    <ellipse cx="0" cy="0" rx="25" ry="20" fill="#263238" stroke="#212121" stroke-width="1"/>
+    <ellipse cx="0" cy="0" rx="20" ry="15" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="1"/>
+    <ellipse cx="0" cy="0" rx="10" ry="7" fill="#FF8A65" stroke="#FF5722" stroke-width="1"/>
+    <ellipse cx="-5" cy="0" rx="3" ry="2" fill="#AED581" stroke="#7CB342" stroke-width="1"/>
+    <ellipse cx="0" cy="0" rx="3" ry="2" fill="#FFD54F" stroke="#FFC107" stroke-width="1"/>
+    <ellipse cx="5" cy="0" rx="3" ry="2" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="1"/>
+    <ellipse cx="0" cy="-7" rx="20" ry="3" fill="#FFFFFF" stroke="#EEEEEE" stroke-width="0.5" opacity="0.8"/>
+  </g>
+  
+  <!-- Salsa de maracuyá -->
+  <ellipse cx="350" cy="190" rx="20" ry="10" fill="#FFD54F" stroke="#FFC107" stroke-width="1" opacity="0.8"/>
+  
+  <!-- Título -->
+  <text x="250" y="50" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">Roll Caribe</text>
+  <text x="250" y="80" font-family="Arial" font-size="16" text-anchor="middle" fill="#666">Con camarones, aguacate, mango y coco</text>
+</svg>

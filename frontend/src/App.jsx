@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import LayoutNoFooter from './components/layout/LayoutNoFooter'
+import LayoutEmpty from './components/layout/LayoutEmpty'
 import './App.css'
 
 // Lazy load pages for better performance
@@ -13,6 +14,7 @@ const Contact = lazy(() => import('./pages/Contact'))
 const Specifications = lazy(() => import('./pages/Specifications'))
 const Abogado = lazy(() => import('./paginas_simples/abogado/Abogado'))
 const Barberia = lazy(() => import('./paginas_simples/barberia/Barberia'))
+const Restaurante = lazy(() => import('./paginas_simples/restaurante/restaurante'))
 const NotFound = () => <div className="container mx-auto p-8">404 - Page Not Found</div>
 
 function App() {
@@ -32,6 +34,9 @@ function App() {
           <Route path="/paginas_simples" element={<LayoutNoFooter />}>
             <Route path="abogado" element={<Abogado />} />
             <Route path="barberia" element={<Barberia />} />
+          </Route>
+          <Route path="/paginas_simples" element={<LayoutEmpty />}>
+            <Route path="restaurante" element={<Restaurante />} />
           </Route>
         </Routes>
       </Suspense>

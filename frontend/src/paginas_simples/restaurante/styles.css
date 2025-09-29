@@ -1,0 +1,904 @@
+/* Estilos específicos para la página del restaurante */
+
+/* Asegurarse de que los estilos del proyecto principal no afecten */
+.restaurant-page {
+  font-family: 'Open Sans', sans-serif;
+  color: #444;
+  background-color: #fff;
+}
+
+/* Optimización de la galería para móviles */
+.gallary-item {
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+.gallary-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Ajuste para que las imágenes se muestren mejor en móviles */
+@media (max-width: 767px) {
+  .gallary-item {
+    padding: 5px;
+  }
+  
+  /* Hacer que las imágenes se muestren en una cuadrícula de 2 columnas */
+  .col-sm-6.col-lg-3.gallary-item {
+    width: 50%;
+    float: left;
+  }
+}
+
+/* Navbar Responsive Mejorado */
+.responsive-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(139, 69, 19, 0.9) 100%);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+/* Logo */
+.nav-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-logo img {
+    height: 40px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.nav-logo span {
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Menu Items - Desktop */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.nav-link:hover {
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.nav-link i {
+    font-size: 1rem;
+}
+
+/* CTA Button Desktop */
+.nav-cta-desktop {
+    display: flex;
+}
+
+.cta-btn {
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    color: #fff;
+}
+
+/* CTA Button Mobile (hidden by default) */
+.nav-cta-mobile {
+    display: none;
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    color: #fff;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: bold;
+    margin-top: 2rem;
+    text-align: center;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hamburger Menu */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+.nav-hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.nav-hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.nav-hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .nav-container {
+        padding: 0 15px;
+        height: 60px;
+    }
+    
+    .nav-hamburger {
+        display: flex;
+    }
+    
+    .nav-cta-desktop {
+        display: none;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(139, 69, 19, 0.95) 100%);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-link {
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+        width: 80%;
+        text-align: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0.5rem 0;
+    }
+    
+    .nav-cta-mobile {
+        display: flex;
+        width: 80%;
+    }
+    
+    .nav-logo span {
+        font-size: 1.3rem;
+    }
+    
+    .nav-logo img {
+        height: 35px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .nav-container {
+        height: 55px;
+        padding: 0 10px;
+    }
+    
+    .nav-logo span {
+        font-size: 1.1rem;
+    }
+    
+    .nav-logo img {
+        height: 30px;
+        margin-right: 8px;
+    }
+    
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .nav-hamburger span {
+        width: 22px;
+        height: 2px;
+    }
+}
+
+/* Body padding adjustment */
+
+
+
+/* ===== NUEVO MENU CON IMÁGENES ===== */
+.menu-tabs {
+    border: none;
+    margin-bottom: 3rem;
+}
+
+.menu-tabs .nav-link {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    margin: 0 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-tabs .nav-link:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.menu-tabs .nav-link:hover:before,
+.menu-tabs .nav-link.active:before {
+    left: 0;
+}
+
+.menu-tabs .nav-link:hover,
+.menu-tabs .nav-link.active {
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(243, 156, 18, 0.3);
+}
+
+.menu-tabs .nav-link i {
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+/* Tarjetas del menú */
+.menu-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.menu-card-img {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.menu-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.menu-card:hover .menu-card-img img {
+    transform: scale(1.1);
+}
+
+.menu-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.menu-card-overlay .price {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+}
+
+.badge-special {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-popular {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.menu-card-content {
+    padding: 25px;
+    text-align: center;
+}
+
+.menu-card-content h5 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.menu-card-content p {
+    color: #7f8c8d;
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    height: 60px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.menu-card-rating {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.menu-card-rating i {
+    color: #f39c12;
+    font-size: 1.1em;
+}
+
+.menu-card-rating i.far {
+    color: #ddd;
+}
+
+/* Animaciones para las pestañas */
+.tab-pane {
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive para el menú */
+@media (max-width: 991px) {
+    .menu-tabs .nav-link {
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    
+    .menu-card-img {
+        height: 200px;
+    }
+    
+    .menu-card-content {
+        padding: 20px;
+    }
+    
+    .menu-card-content h5 {
+        font-size: 1.2em;
+    }
+    
+    .menu-card-content p {
+        height: 50px;
+        -webkit-line-clamp: 2;
+    }
+}
+
+@media (max-width: 575px) {
+    .menu-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .menu-tabs .nav-link {
+        margin: 3px;
+        padding: 8px 15px;
+        font-size: 0.8em;
+    }
+    
+    .menu-tabs .nav-link i {
+        margin-right: 5px;
+    }
+    
+    .menu-card-img {
+        height: 180px;
+    }
+    
+    .menu-card-content {
+        padding: 15px;
+    }
+    
+    .menu-card-content h5 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    
+    .menu-card-content p {
+        font-size: 0.9em;
+        height: 45px;
+        margin-bottom: 15px;
+    }
+    
+    .menu-card-overlay .price {
+        padding: 6px 12px;
+        font-size: 1em;
+    }
+    
+    .badge-special,
+    .badge-popular {
+        padding: 4px 10px;
+        font-size: 0.7em;
+    }
+}
+
+/* Responsive para el menú */
+@media (max-width: 991px) {
+    .menu-category {
+        margin-bottom: 30px;
+    }
+    
+    .menu-item {
+        padding: 15px !important;
+    }
+    
+    .menu-item-content h5 {
+        font-size: 1.1rem;
+    }
+    
+    .menu-item-content p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .menu-category h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px !important;
+    }
+    
+    .menu-item {
+        flex-direction: column;
+        align-items: flex-start !important;
+        padding: 12px !important;
+    }
+    
+    .menu-item-content {
+        margin-bottom: 8px;
+        width: 100%;
+    }
+    
+    .menu-item-content h5 {
+        font-size: 1rem;
+    }
+    
+    .menu-item-content p {
+        font-size: 0.8rem;
+        margin-bottom: 5px !important;
+    }
+    
+    .text-warning.font-weight-bold {
+        font-size: 1.1rem;
+        align-self: flex-end;
+    }
+}
+
+/* Estilos para los fondos de las secciones */
+.header {
+  background-image: url('/paginas_simples/restaurante/assets/imgs/main.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.has-img-bg {
+  background-image: url('/paginas_simples/restaurante/assets/imgs/about-section.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+#book-table {
+  background-image: url('/paginas_simples/restaurante/assets/imgs/book-table-img.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+#book-table::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Overlay oscuro para mejorar legibilidad */
+  z-index: 1;
+}
+
+#book-table > div {
+  position: relative;
+  z-index: 2; /* Colocar el contenido por encima del overlay */
+}
+
+#book-table .section-title {
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Sombra para mejorar legibilidad */
+}
+
+#book-table .custom-form-control {
+  background-color: rgba(255, 255, 255, 0.95); /* Fondo más opaco para mejor legibilidad */
+  border: 2px solid #ff9800;
+  color: #000 !important; /* Texto negro forzado */
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+#book-table .custom-form-control:focus {
+  background-color: #fff;
+  border-color: #ff9800;
+  box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.25);
+  color: #000 !important;
+}
+
+#book-table .custom-form-control::placeholder {
+  color: #666 !important;
+  opacity: 0.8;
+}
+
+#book-table .form-label {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-size: 0.9rem;
+  display: block;
+  text-align: left;
+}
+
+/* Estilos para el botón de volver a proyectos */
+.back-to-projects {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.btn-back {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #ff9800;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: #e68900;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+/* Mejoras responsive */
+@media (max-width: 767px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.3rem !important;
+  }
+  
+  p {
+    font-size: 1rem !important;
+  }
+  
+  .btn-back {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  /* Mejorar espaciado en móviles */
+  .section-title {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .py-5 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .my-3 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
+@media (max-width: 575px) {
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  h2 {
+    font-size: 1.3rem !important;
+  }
+  
+  h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  p {
+    font-size: 0.95rem !important;
+  }
+  
+  .btn-back {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Nueva sección de contacto moderna */
+.bg-gradient-dark {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-gradient-dark::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="50" cy="10" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="10" cy="60" r="1" fill="%23ffffff" opacity="0.02"/><circle cx="90" cy="40" r="1" fill="%23ffffff" opacity="0.02"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.contact-card:hover::before {
+    left: 100%;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 193, 7, 0.3);
+    box-shadow: 0 10px 30px rgba(255, 193, 7, 0.1);
+}
+
+.contact-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ffc107, #ff8f00);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-icon i {
+    font-size: 24px;
+    color: #000;
+}
+
+.contact-card h5 {
+    position: relative;
+    z-index: 2;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.contact-card p {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 0.5rem;
+}
+
+.contact-card a {
+    transition: color 0.3s ease;
+}
+
+.contact-card a:hover {
+    color: #ffc107 !important;
+}
+
+.map-container {
+    position: relative;
+    border: 3px solid rgba(255, 193, 7, 0.3);
+    transition: all 0.3s ease;
+}
+
+.map-container:hover {
+    border-color: rgba(255, 193, 7, 0.6);
+    box-shadow: 0 15px 40px rgba(255, 193, 7, 0.2);
+}
+
+.social-links a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 33px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.social-links a:hover {
+    background: #ffc107;
+    color: #000 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+}
+
+/* Responsive para la nueva sección de contacto */
+@media (max-width: 991px) {
+    .contact-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .map-container {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .contact-icon i {
+        font-size: 20px;
+    }
+    
+    .contact-card {
+        padding: 1.5rem !important;
+    }
+    
+    .map-container iframe {
+        height: 300px !important;
+    }
+}
+
+@media (max-width: 575px) {
+    .bg-gradient-dark {
+        padding: 3rem 0 !important;
+    }
+    
+    .contact-card {
+        padding: 1rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    .map-container iframe {
+        height: 250px !important;
+    }
+}

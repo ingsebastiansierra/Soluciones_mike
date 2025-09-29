@@ -293,6 +293,10 @@
         "barbershop": {
           "title": "Barbería",
           "description": "Sitio web moderno para una barbería con secciones para servicios, galería, precios, testimonios y reserva de citas."
+        },
+        "restaurant": {
+          "title": "Restaurante",
+          "description": "Sitio web elegante para un restaurante con menú interactivo, reservas online y galería de platos."
         }
       },
       "corporate": {
@@ -426,7 +430,7 @@
     "terms": "Términos y condiciones",
     "description": "Desarrollo web a tu medida, creando soluciones digitales innovadoras y eficientes.",
     "location": "Samacá centro, Colombia",
-    "phone": "+57 3121310650",
+    "phone": "+57 312310650",
     "email": "vegasebastian073@gmail.com"
   }
 }

@@ -1,0 +1,254 @@
+/* Estilos para la navegación del restaurante */
+.custom-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    transition: all 0.3s ease;
+    /* Fondo semi-transparente por defecto */
+    background: rgba(0, 0, 0, 0.8) !important; 
+    padding: 4px 0; /* Reducido de 8px a 4px */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    height: auto; /* Asegurar que la altura se ajuste al contenido */
+    min-height: 0; /* Eliminar altura mínima */
+    max-height: 60px; /* Limitar altura máxima */
+}
+
+
+
+/* Animación para el navbar al hacer scroll */
+.navbar-scrolled {
+    background: rgba(0, 0, 0, 0.95) !important;
+    padding: 2px 0; /* Reducido de 5px a 2px */
+    max-height: 50px; /* Reducir altura máxima al hacer scroll */
+}
+
+/* Estilos para el efecto parallax */
+.parallax-section {
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.parallax-element {
+    transition: transform 0.2s ease-out;
+    will-change: transform;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.4rem; /* Reducido de 1.8rem a 1.4rem */
+    color: #ff9800 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px; /* Reducido de 1px a 0.5px */
+    transition: all 0.3s ease;
+    visibility: visible !important;
+    opacity: 1 !important;
+    padding: 0; /* Eliminar padding */
+    margin: 0 10px; /* Reducir margen */
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+}
+
+.navbar-brand .brand-img,
+.navbar-brand .brand-txt {
+    visibility: visible !important;
+    opacity: 1 !important;
+    max-height: 40px; /* Limitar altura del logo */
+    width: auto; /* Mantener proporción */
+}
+
+/* Estilos para el botón de cerrar en móvil */
+.navbar-close {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    color: #ff9800;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar-close:hover {
+    transform: rotate(90deg);
+    color: #fff;
+}
+
+/* Estilos para los elementos del menú */
+.nav-item {
+    margin: 0 3px; /* Reducido de 5px a 3px */
+    position: relative;
+}
+
+/* CORRECCIÓN: Asegurar que el texto del menú sea blanco en desktop */
+.custom-navbar .navbar-nav .nav-link { 
+    color: #fff !important; 
+    font-weight: 500; /* Reducido de 600 a 500 */
+    padding: 3px 8px !important; /* Reducido de 6px 10px a 3px 8px */
+    position: relative;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.3px; /* Reducido de 0.5px a 0.3px */
+    font-size: 0.8rem; /* Reducido de 0.9rem a 0.8rem */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); /* Reducido shadow */
+    line-height: 1.2; /* Reducir altura de línea */
+}
+
+.nav-link:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #ff9800;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover {
+    color: white !important;
+}
+
+.nav-link:hover:before {
+    width: 70%;
+}
+
+/* Media queries para tablets */
+@media (max-width: 991.98px) {
+    .custom-navbar {
+        padding: 3px 0;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+        margin: 0 5px;
+    }
+    
+    .navbar-brand .brand-img,
+    .navbar-brand .brand-txt {
+        max-height: 35px;
+    }
+    
+    .custom-navbar .navbar-nav .nav-link {
+        font-size: 0.75rem;
+        padding: 2px 6px !important;
+    }
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 575.98px) {
+    /* El navbar-toggler se oculta automáticamente por Bootstrap cuando el menú está abierto */
+    
+    .custom-navbar {
+        padding: 2px 0;
+        max-height: 45px;
+    }
+    
+    .navbar-brand {
+        font-size: 1rem;
+        margin: 0 3px;
+    }
+    
+    .navbar-brand .brand-img,
+    .navbar-brand .brand-txt {
+        max-height: 30px;
+    }
+    
+    .navbar-collapse.show {
+        display: block !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.95) !important; /* Forzar fondo negro */
+        padding: 50px 15px 15px;
+        z-index: 999;
+        animation: fadeIn 0.3s ease;
+        overflow-y: auto; /* Permitir scroll si hay muchos elementos */
+        max-height: 100vh;
+        width: 100%; /* Asegurar que ocupe todo el ancho */
+    }
+    
+    .navbar-close.show {
+        display: block; /* Muestra la 'X' */
+        animation: rotateIn 0.5s ease;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .navbar-nav {
+        text-align: center;
+    }
+    
+    .nav-item {
+        margin: 5px 0; /* Reducido de 8px a 5px */
+        opacity: 1; /* Cambiado de 0 a 1 para asegurar visibilidad */
+        animation: slideInDown 0.5s ease forwards;
+    }
+    
+    /* Retrasos para la animación del menú en móvil */
+    .nav-item:nth-child(1) { animation-delay: 0.1s; }
+    .nav-item:nth-child(2) { animation-delay: 0.2s; }
+    .nav-item:nth-child(3) { animation-delay: 0.3s; }
+    .nav-item:nth-child(4) { animation-delay: 0.4s; }
+    .nav-item:nth-child(5) { animation-delay: 0.5s; }
+    
+    .nav-link {
+        font-size: 1.2rem; /* Aumentado para mejor legibilidad en móviles */
+        padding: 8px 0 !important; /* Aumentado para mejor área de toque */
+        color: #fff !important; /* Forzar color blanco */
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+        line-height: 1.3; /* Aumentar altura de línea */
+        margin: 5px 0; /* Añadir espacio entre elementos */
+        background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para los enlaces */
+        border-radius: 5px; /* Bordes redondeados */
+    }
+    
+    .nav-link:before {
+        display: none; /* Oculta la línea de desktop */
+    }
+    
+    /* Muestra la línea de hover específica para móvil */
+    .nav-link:after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 2px;
+        background: #ff9800;
+        transition: width 0.3s ease;
+        margin: 5px auto 0;
+        color: white;
+    }
+    
+    .nav-link:hover:after {
+        width: 50%;
+        color:white;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes rotateIn {
+    from { transform: rotate(-90deg); opacity: 0; }
+    to { transform: rotate(0); opacity: 1; }
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-20px); opacity: 0.5; }
+    to { transform: translateY(0); opacity: 1; }
+}

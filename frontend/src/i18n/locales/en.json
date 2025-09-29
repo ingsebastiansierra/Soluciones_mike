@@ -314,6 +314,10 @@
         "barbershop": {
           "title": "Barbershop",
           "description": "Modern website for a barbershop with sections for services, gallery, pricing, testimonials, and appointment booking."
+        },
+        "restaurant": {
+          "title": "Restaurant",
+          "description": "Elegant website for a restaurant with interactive menu, online reservations, and dish gallery."
         }
       },
       "corporate": {

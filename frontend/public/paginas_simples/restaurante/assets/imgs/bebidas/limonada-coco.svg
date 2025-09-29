@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="500" height="300">
+  <!-- Superficie de mesa -->
+  <rect x="0" y="250" width="500" height="50" fill="#A1887F" stroke="#8D6E63" stroke-width="1"/>
+  
+  <!-- Vaso -->
+  <path d="M200,70 L180,230 L320,230 L300,70 Z" fill="#E0F7FA" stroke="#B2EBF2" stroke-width="1" opacity="0.7"/>
+  
+  <!-- Líquido -->
+  <path d="M185,200 L315,200 L320,230 L180,230 Z" fill="#FFFFFF" stroke="#E0F2F1" stroke-width="1"/>
+  <path d="M190,150 L310,150 L315,200 L185,200 Z" fill="#E0F2F1" stroke="#B2DFDB" stroke-width="1"/>
+  <path d="M195,100 L305,100 L310,150 L190,150 Z" fill="#B2DFDB" stroke="#80CBC4" stroke-width="1"/>
+  
+  <!-- Hielo -->
+  <rect x="210" y="120" width="20" height="20" rx="5" ry="5" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" opacity="0.8" transform="rotate(15, 220, 130)"/>
+  <rect x="250" y="130" width="25" height="25" rx="5" ry="5" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" opacity="0.8" transform="rotate(-10, 260, 140)"/>
+  <rect x="230" y="170" width="15" height="15" rx="5" ry="5" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" opacity="0.8" transform="rotate(5, 240, 180)"/>
+  <rect x="270" y="160" width="20" height="20" rx="5" ry="5" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1" opacity="0.8" transform="rotate(-20, 280, 170)"/>
+  
+  <!-- Rodaja de limón -->
+  <path d="M190,90 L200,70 L300,70 L310,90 Z" fill="#FFECB3" stroke="#FFE082" stroke-width="1"/>
+  <ellipse cx="250" cy="80" rx="50" ry="10" fill="#FFF59D" stroke="#FFF176" stroke-width="1"/>
+  <ellipse cx="250" cy="80" rx="40" ry="8" fill="#FFECB3" stroke="#FFE082" stroke-width="1"/>
+  <ellipse cx="250" cy="80" rx="30" ry="6" fill="#FFF9C4" stroke="#FFF59D" stroke-width="1"/>
+  
+  <!-- Coco rallado en el borde -->
+  <path d="M200,70 C210,65 220,63 230,62 C240,61 250,60 260,61 C270,62 280,63 290,65 C295,66 298,68 300,70" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="2,2"/>
+  
+  <!-- Pajita -->
+  <path d="M220,60 L230,70 L240,150 L245,230" stroke="#F48FB1" stroke-width="4" fill="none"/>
+  
+  <!-- Sombrilla decorativa -->
+  <path d="M280,60 L270,150" stroke="#4DD0E1" stroke-width="1" fill="none"/>
+  <path d="M260,70 Q270,60 280,60 Q290,60 300,70" fill="#4DD0E1" stroke="#26C6DA" stroke-width="1"/>
+  
+  <!-- Título -->
+  <text x="250" y="30" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">Limonada de Coco</text>
+  <text x="250" y="55" font-family="Arial" font-size="16" text-anchor="middle" fill="#666">Refrescante bebida tropical</text>
+</svg>

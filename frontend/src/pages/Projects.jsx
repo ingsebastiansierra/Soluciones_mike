@@ -10,7 +10,7 @@ const mockProjects = [
     id: 1,
     titleKey: 'projects.examples.simple.lawyer.title',
     descriptionKey: 'projects.examples.simple.lawyer.description',
-    image: '/images/websites/lawyer.svg',
+    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     category: 'simple',
     technologies: ['React', 'CSS'],
     url: '/paginas_simples/abogado'
@@ -19,13 +19,22 @@ const mockProjects = [
     id: 2,
     titleKey: 'projects.examples.simple.barbershop.title',
     descriptionKey: 'projects.examples.simple.barbershop.description',
-    image: '/images/websites/barbershop.svg',
+    image: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     category: 'simple',
     technologies: ['React', 'CSS'],
     url: '/paginas_simples/barberia'
   },
   {
     id: 3,
+    titleKey: 'projects.examples.simple.restaurant.title',
+    descriptionKey: 'projects.examples.simple.restaurant.description',
+    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    category: 'simple',
+    technologies: ['React', 'CSS', 'Bootstrap'],
+    url: '/paginas_simples/restaurante'
+  },
+  {
+    id: 4,
     titleKey: 'projects.examples.corporate.website.title',
     descriptionKey: 'projects.examples.corporate.website.description',
     image: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
@@ -33,7 +42,7 @@ const mockProjects = [
     technologies: ['React', 'Bootstrap', 'Node.js']
   },
   {
-    id: 4,
+    id: 5,
     titleKey: 'projects.examples.corporate.news.title',
     descriptionKey: 'projects.examples.corporate.news.description',
     image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
@@ -41,7 +50,7 @@ const mockProjects = [
     technologies: ['React', 'Node.js', 'MongoDB']
   },
   {
-    id: 5,
+    id: 6,
     titleKey: 'projects.examples.custom.ecommerce.title',
     descriptionKey: 'projects.examples.custom.ecommerce.description',
     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
@@ -49,7 +58,7 @@ const mockProjects = [
     technologies: ['React', 'Node.js', 'MongoDB', 'Stripe']
   },
   {
-    id: 6,
+    id: 7,
     titleKey: 'projects.examples.custom.realestate.title',
     descriptionKey: 'projects.examples.custom.realestate.description',
     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',

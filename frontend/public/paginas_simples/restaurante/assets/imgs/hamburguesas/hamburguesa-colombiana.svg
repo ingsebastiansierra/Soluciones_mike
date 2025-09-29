@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="500" height="300">
+  <!-- Plato -->
+  <ellipse cx="250" cy="230" rx="150" ry="30" fill="#f5f5f5" stroke="#ccc" stroke-width="2"/>
+  
+  <!-- Pan inferior -->
+  <path d="M150,200 Q250,220 350,200 L350,220 Q250,240 150,220 Z" fill="#F9A825" stroke="#F57F17" stroke-width="1"/>
+  
+  <!-- Carne -->
+  <path d="M160,190 Q250,210 340,190 L340,200 Q250,220 160,200 Z" fill="#5D4037" stroke="#4E342E" stroke-width="1"/>
+  
+  <!-- Queso -->
+  <path d="M170,180 Q250,200 330,180 L330,190 Q250,210 170,190 Z" fill="#FFA000" stroke="#FF8F00" stroke-width="1"/>
+  
+  <!-- Aguacate -->
+  <path d="M180,170 Q250,190 320,170 L320,180 Q250,200 180,180 Z" fill="#7CB342" stroke="#689F38" stroke-width="1"/>
+  
+  <!-- Tomate -->
+  <path d="M190,160 Q250,180 310,160 L310,170 Q250,190 190,170 Z" fill="#E53935" stroke="#D32F2F" stroke-width="1"/>
+  
+  <!-- Lechuga -->
+  <path d="M200,150 Q250,170 300,150 L300,160 Q250,180 200,160 Z" fill="#7CB342" stroke="#689F38" stroke-width="1" opacity="0.8"/>
+  
+  <!-- Piña -->
+  <path d="M210,140 Q250,160 290,140 L290,150 Q250,170 210,150 Z" fill="#FFD54F" stroke="#FFC107" stroke-width="1"/>
+  
+  <!-- Chicharrón -->
+  <path d="M220,130 Q250,150 280,130 L280,140 Q250,160 220,140 Z" fill="#A1887F" stroke="#8D6E63" stroke-width="1"/>
+  
+  <!-- Pan superior -->
+  <path d="M230,110 Q250,130 270,110 Q300,115 320,125 Q330,130 330,135 Q250,155 170,135 Q170,130 180,125 Q200,115 230,110" fill="#F9A825" stroke="#F57F17" stroke-width="1"/>
+  
+  <!-- Semillas en el pan -->
+  <circle cx="240" cy="120" r="1" fill="#F57F17"/>
+  <circle cx="250" cy="118" r="1" fill="#F57F17"/>
+  <circle cx="260" cy="120" r="1" fill="#F57F17"/>
+  <circle cx="270" cy="125" r="1" fill="#F57F17"/>
+  <circle cx="230" cy="125" r="1" fill="#F57F17"/>
+  
+  <!-- Título -->
+  <text x="250" y="50" font-family="Arial" font-size="24" text-anchor="middle" fill="#333">Hamburguesa Colombiana</text>
+  <text x="250" y="80" font-family="Arial" font-size="16" text-anchor="middle" fill="#666">Con aguacate, piña y chicharrón</text>
+</svg>

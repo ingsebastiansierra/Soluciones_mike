@@ -4,10 +4,6 @@ import Section from '../components/ui/Section';
 import Button from '../components/ui/Button';
 import ProjectCard from '../components/projects/ProjectCard';
 
-// Se eliminaron las animaciones de framer-motion
-
-// Se eliminaron las animaciones de texto con efecto de escritura
-
 // Datos de proyectos para el carrusel 3D
 const projectsData = [
   {
@@ -39,7 +35,9 @@ const projectsData = [
   }
 ];
 
-
+// ⚠️ RUTA DEL VIDEO: Asegúrate de que esta ruta funcione correctamente en tu entorno (Vite/Webpack)
+// Si no funciona, intenta: import demoVideo from '/src/assets/videos/video_demostracion.mp4'; y luego usa 'demoVideo'
+const DEMO_VIDEO_PATH = "/src/assets/videos/video_demostracion.mp4"; 
 
 const Home = () => {
   const { t } = useTranslation();
@@ -49,6 +47,9 @@ const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
   const [direction, setDirection] = useState(null);
   
+  // 🚀 REFERENCIA PARA EL VIDEO
+  const videoRef = useRef(null);
+
   // Verificar que las imágenes se carguen correctamente
   useEffect(() => {
     // Precargar imágenes
@@ -89,6 +90,42 @@ const Home = () => {
     }, 8000); // Aumentado a 8 segundos para mejor visualización
     return () => clearInterval(interval);
   }, [isRotating]);
+
+
+  // 🚀 LÓGICA DE REPRODUCCIÓN AUTOMÁTICA DEL VIDEO (ON SCROLL)
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+
+    const handleIntersection = (entries) => {
+      const [entry] = entries;
+      
+      if (entry.isIntersecting) {
+        // Al entrar en la vista, intenta reproducir
+        videoElement.play().catch(error => {
+          console.error("Autoplay de video bloqueado (probablemente no está silenciado o es iOS):", error);
+        });
+      } else {
+        // Al salir de la vista, pausa
+        videoElement.pause();
+      }
+    };
+    
+    const options = {
+      root: null, // viewport
+      rootMargin: '0px',
+      threshold: 0.7 // Reproducir cuando el 70% del video es visible
+    };
+    
+    const observer = new IntersectionObserver(handleIntersection, options);
+    
+    observer.observe(videoElement);
+    
+    return () => {
+      observer.unobserve(videoElement);
+    };
+  }, []); // Dependencia vacía para que se ejecute solo al montar
+  
 
   return (
     <div className="w-full">
@@ -150,7 +187,7 @@ const Home = () => {
         </div>
       </section>
 
-
+---
 
       {/* Projects Carousel Section */}
       <section id="projects" className="py-16 sm:py-24 relative overflow-hidden">
@@ -316,14 +353,19 @@ const Home = () => {
         </div>
       </section>
 
+---
+
       {/* Video Demo Section */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-subtle-light to-white dark:from-subtle-dark dark:to-background-dark relative overflow-hidden">
+      <section 
+        className="py-16 sm:py-24 bg-gradient-to-b from-subtle-light to-white dark:from-subtle-dark dark:to-background-dark relative overflow-hidden"
+        id="video-demo" 
+      >
         {/* Elementos decorativos de fondo */}
         <div 
           className="absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none"
         >
           <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
+             <defs>
               <pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
                 <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeOpacity="0.1" strokeWidth="0.5"/>
               </pattern>
@@ -353,22 +395,23 @@ const Home = () => {
           </div>
           
           <div 
-            className="relative aspect-video rounded-xl overflow-hidden shadow-2xl max-w-4xl mx-auto"
+            className="relative aspect-video  max-w-4xl mx-auto"
           >
             {/* Efecto de brillo en los bordes */}
             <div 
-              className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary rounded-xl blur-sm opacity-70 z-0"
+              className="absolute -inset-1  from-primary via-accent to-primary rounded-xl blur-sm opacity-70 z-0"
             />
             
             <div className="relative z-10 rounded-xl overflow-hidden">
+              {/* 🏆 SOLUCIÓN PARA EL VIDEO: Etiqueta <video> con las propiedades de Autoplay */}
               <video 
-                src="https://thetestdata.com/videos/1080p/5MB.mp4" 
-                poster="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                className="absolute inset-0 w-full h-full object-cover"
-                controls
-                autoPlay
-                muted
+                ref={videoRef} // ⬅️ Conecta con la lógica de useEffect
+                src={DEMO_VIDEO_PATH} // ⬅️ Usa la ruta de tu video
+                className="w-full h-full object-cover"
+                controls={false} 
+                muted // ⬅️ ¡ESENCIAL! Permite el autoplay en navegadores
                 loop
+                playsInline // Mejora la compatibilidad en iOS
               >
                 Tu navegador no soporta el elemento de video.
               </video>
@@ -377,6 +420,8 @@ const Home = () => {
         </div>
       </section>
       
+---
+
       {/* Testimonials Section */}
       <Section className="py-16 sm:py-24 bg-subtle-light dark:bg-subtle-dark" id="testimonials">
         <div className="container mx-auto px-4 md:px-6">
@@ -413,7 +458,7 @@ const Home = () => {
         </div>
       </Section>
 
-
+---
 
       {/* CTA Section */}
       <Section className="py-12" id="cta">
