@@ -16,13 +16,17 @@ const Button = ({
   // Clases base para todos los botones
   const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium transition-all focus:outline-none';
   
-  // Variantes de botones
+  // Variantes de botones con mejor contraste
   const variants = {
-    primary: 'bg-accent text-white hover:bg-accent/90 shadow-md',
-    secondary: 'bg-secondary text-white hover:bg-secondary/90 shadow-sm',
-    outline: 'border-2 border-accent text-accent hover:bg-accent hover:text-white',
-    ghost: 'bg-transparent text-text-primary dark:text-text-light hover:bg-light-bg/50 dark:hover:bg-dark-bg/50',
-    light: 'bg-light-bg text-text-primary hover:bg-border-light shadow-sm',
+    primary: 'bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800 shadow-lg hover:shadow-xl border-0',
+    secondary: 'bg-gradient-to-r from-secondary-600 to-secondary-700 text-white hover:from-secondary-700 hover:to-secondary-800 shadow-lg hover:shadow-xl border-0',
+    accent: 'bg-gradient-to-r from-accent-600 to-accent-700 text-white hover:from-accent-700 hover:to-accent-800 shadow-lg hover:shadow-xl border-0',
+    outline: 'border-2 border-primary-500 text-primary-600 hover:bg-primary-500 hover:text-white bg-transparent shadow-md hover:shadow-lg',
+    ghost: 'bg-white/10 backdrop-blur-sm text-primary-700 hover:bg-primary-50 hover:text-primary-800 border border-primary-200 hover:border-primary-300',
+    light: 'bg-white text-primary-700 hover:bg-primary-50 shadow-lg hover:shadow-xl border border-primary-200 hover:border-primary-300',
+    dark: 'bg-gray-800 text-white hover:bg-gray-900 shadow-lg hover:shadow-xl border-0',
+    success: 'bg-gradient-to-r from-success-600 to-success-700 text-white hover:from-success-700 hover:to-success-800 shadow-lg hover:shadow-xl border-0',
+    warning: 'bg-gradient-to-r from-warning-600 to-warning-700 text-white hover:from-warning-700 hover:to-warning-800 shadow-lg hover:shadow-xl border-0',
   };
   
   // Tamaños de botones

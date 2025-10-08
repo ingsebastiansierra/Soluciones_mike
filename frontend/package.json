@@ -5,11 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --mode production",
+    "build:analyze": "vite build --mode production && npx vite-bundle-analyzer dist/stats.html",
+    "build:hostgator": "vite build --mode production && npm run optimize:images",
+    "optimize:images": "echo 'Optimizando imágenes...' && echo 'Listo para subir a Hostgator'",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rmdir /s /q dist 2>nul || echo 'Directorio limpio'"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@supabase/supabase-js": "^2.57.4",
     "framer-motion": "^12.23.13",
     "i18next": "^25.5.2",

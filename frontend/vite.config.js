@@ -11,6 +11,32 @@ export default defineConfig({
       '@': resolve(__dirname, 'src')
     }
   },
+  build: {
+    // Optimizaciones de build para máximo rendimiento
+    target: 'esnext',
+    minify: 'terser',
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Separar librerías grandes en chunks
+          'react-vendor': ['react', 'react-dom'],
+          'router': ['react-router-dom'],
+          'animation': ['framer-motion'],
+          'i18n': ['react-i18next', 'i18next']
+        }
+      }
+    },
+    terserOptions: {
+      compress: {
+        drop_console: true, // Eliminar console.log en producción
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn']
+      }
+    },
+    chunkSizeWarningLimit: 1000,
+    assetsInlineLimit: 4096, // Inline assets pequeños como base64
+  },
   server: {
     port: 5173,
     open: true,

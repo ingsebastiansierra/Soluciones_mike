@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Section from '../components/ui/Section';
 import Button from '../components/ui/Button';
 import ProjectCard from '../components/projects/ProjectCard';
+import VideoPlayer from '../components/ui/VideoPlayer';
 
 // Datos de proyectos para el carrusel 3D
 const projectsData = [
@@ -35,20 +37,49 @@ const projectsData = [
   }
 ];
 
-// ⚠️ RUTA DEL VIDEO: Asegúrate de que esta ruta funcione correctamente en tu entorno (Vite/Webpack)
-// Si no funciona, intenta: import demoVideo from '/src/assets/videos/video_demostracion.mp4'; y luego usa 'demoVideo'
-const DEMO_VIDEO_PATH = "/src/assets/videos/video_demostracion.mp4"; 
+// Video ahora se maneja con YouTube embed para mejor rendimiento
 
 const Home = () => {
   const { t } = useTranslation();
-  
+
   // Estado para el carrusel 3D
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isRotating, setIsRotating] = useState(false);
   const [direction, setDirection] = useState(null);
-  
-  // 🚀 REFERENCIA PARA EL VIDEO
-  const videoRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Referencias
+  const heroRef = useRef(null);
+
+  // Scroll animations
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  // Mouse tracking para efectos parallax ultra suave
+  useEffect(() => {
+    let ticking = false;
+    let lastTime = 0;
+    const throttleDelay = 200; // Mucho más lento para máxima suavidad
+
+    const handleMouseMove = (e) => {
+      const now = Date.now();
+      if (!ticking && now - lastTime > throttleDelay) {
+        requestAnimationFrame(() => {
+          setMousePosition({
+            x: (e.clientX / window.innerWidth) * 100,
+            y: (e.clientY / window.innerHeight) * 100,
+          });
+          lastTime = now;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   // Verificar que las imágenes se carguen correctamente
   useEffect(() => {
@@ -64,7 +95,7 @@ const Home = () => {
     if (isRotating) return;
     setIsRotating(true);
     setDirection('left');
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? projectsData.length - 1 : prevIndex - 1
     );
     setTimeout(() => setIsRotating(false), 100);
@@ -75,12 +106,12 @@ const Home = () => {
     if (isRotating) return;
     setIsRotating(true);
     setDirection('right');
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === projectsData.length - 1 ? 0 : prevIndex + 1
     );
     setTimeout(() => setIsRotating(false), 100);
   };
-  
+
   // Efecto para autoplay del carrusel
   useEffect(() => {
     const interval = setInterval(() => {
@@ -92,226 +123,319 @@ const Home = () => {
   }, [isRotating]);
 
 
-  // 🚀 LÓGICA DE REPRODUCCIÓN AUTOMÁTICA DEL VIDEO (ON SCROLL)
-  useEffect(() => {
-    const videoElement = videoRef.current;
-    if (!videoElement) return;
+  // Video ahora se maneja con YouTube embed para mejor rendimiento
 
-    const handleIntersection = (entries) => {
-      const [entry] = entries;
-      
-      if (entry.isIntersecting) {
-        // Al entrar en la vista, intenta reproducir
-        videoElement.play().catch(error => {
-          console.error("Autoplay de video bloqueado (probablemente no está silenciado o es iOS):", error);
-        });
-      } else {
-        // Al salir de la vista, pausa
-        videoElement.pause();
-      }
-    };
-    
-    const options = {
-      root: null, // viewport
-      rootMargin: '0px',
-      threshold: 0.7 // Reproducir cuando el 70% del video es visible
-    };
-    
-    const observer = new IntersectionObserver(handleIntersection, options);
-    
-    observer.observe(videoElement);
-    
-    return () => {
-      observer.unobserve(videoElement);
-    };
-  }, []); // Dependencia vacía para que se ejecute solo al montar
-  
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-hidden">
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center text-center text-white bg-cover bg-center overflow-hidden" 
-        style={{
-          backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAiI_L6VJurcvFqto6d8EImdEFsaT427Sj7wbqyQrXFs24PPo8DOe_AStpmWaBf_YiLZf85eO2AKrerhHJBsWt6BuUSg8aWy3Zk2RON3MoQ2-bVc7EsgOVdu55Nkfkfy--T1MgplwmBPJ7j9vtW6P9r5DJmxWgsoSGNIvoHXrmnlxWmP6nOJDjdEws69fBaT4j-FTku_v7u1mZj8dS5WHARjUkRm8lrjcTPrBPyeLMpkLRdHrj_grXS8YodXjpNaDcYAW6SkU45fHep')"
-        }}
+      <motion.section
+        className="relative min-h-screen flex items-center justify-center text-center overflow-hidden"
         id="hero"
       >
-        {/* Elementos decorativos */}
-        <div 
-          className="absolute inset-0 w-full h-full opacity-30"
-        >
-          {[...Array(5)].map((_, i) => (
-            <div
+        {/* Animated Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 via-secondary-500/20 to-accent-500/20">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-secondary-600/10 animate-gradient-x" />
+        </div>
+
+        {/* Floating Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
               key={i}
-              className="absolute rounded-full bg-white/20 backdrop-blur-sm"
+              className="absolute rounded-full opacity-10"
               style={{
-                width: `${Math.random() * 300 + 50}px`,
-                height: `${Math.random() * 300 + 50}px`,
-                top: `${Math.random() * 100}%`,
+                background: `linear-gradient(45deg, 
+                  ${i % 3 === 0 ? '#0ea5e9' : i % 3 === 1 ? '#d946ef' : '#f97316'}, 
+                  ${i % 3 === 0 ? '#0284c7' : i % 3 === 1 ? '#c026d3' : '#ea580c'})`,
+                width: `${Math.random() * 150 + 30}px`,
+                height: `${Math.random() * 150 + 30}px`,
                 left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                x: [0, Math.random() * 15 - 7.5, 0],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: Math.random() * 8 + 12,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 5,
               }}
             />
           ))}
         </div>
 
-        <div 
-          className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10"
-        >
-          <div className="overflow-hidden px-4">
-            <h1 
-              className="text-4xl md:text-6xl font-black tracking-tighter p-4"
-            >
+        {/* Interactive Cursor Effect */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          animate={{
+            background: `radial-gradient(400px circle at ${mousePosition.x}% ${mousePosition.y}%, 
+              rgba(14, 165, 233, 0.05), 
+              rgba(217, 70, 239, 0.05), 
+              transparent 60%)`,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 2,
+            damping: 40,
+            mass: 3,
+            duration: 5
+          }}
+        />
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 space-y-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <h1 className="heading-xl mb-6 leading-tight">
               {t('home.hero.title')}
             </h1>
-          </div>
-          
-          <div className="overflow-hidden">
-            <p 
-              className="max-w-2xl mx-auto text-lg md:text-xl text-white/90"
-            >
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <p className="max-w-3xl mx-auto text-xl md:text-2xl text-text-secondary leading-relaxed">
               {t('home.hero.subtitle')}
             </p>
-          </div>
-          
-          <div
-          >
-            <Button 
-              to="/projects" 
-              variant="primary" 
-              size="lg"
-              className="py-3 px-8 text-lg"
-            >
-              {t('home.hero.viewProjects')}
-            </Button>
-          </div>
-        </div>
-      </section>
+          </motion.div>
 
----
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <Button
+              to="/projects"
+              className="btn-primary text-lg px-8 py-4 group relative overflow-hidden"
+            >
+              <span className="relative z-10">{t('home.hero.viewProjects')}</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+            </Button>
+
+            <Button
+              to="/contact"
+              className="btn-outline text-lg px-8 py-4"
+            >
+              {t('common.menu.contact')}
+            </Button>
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          >
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-6 h-10 border-2 border-primary-500 rounded-full flex justify-center"
+            >
+              <motion.div
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-1 h-3 bg-primary-500 rounded-full mt-2"
+              />
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      ---
 
       {/* Projects Carousel Section */}
-      <section id="projects" className="py-16 sm:py-24 relative overflow-hidden">
-        {/* Elementos decorativos de fondo */}
-        <div 
-          className="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none"
-        >
+      <motion.section
+        id="projects"
+        className="py-16 relative overflow-hidden bg-gradient-to-b from-transparent to-primary-50/30"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                <circle cx="5" cy="5" r="1" fill="currentColor" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+        </div>
+
+        {/* Floating Geometric Shapes */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(3)].map((_, i) => (
-            <div
+            <motion.div
               key={i}
-              className="absolute bg-gradient-to-r from-primary/30 to-accent/30 rounded-full filter blur-3xl"
+              className="absolute"
               style={{
-                width: `${Math.random() * 500 + 300}px`,
-                height: `${Math.random() * 500 + 300}px`,
-                top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
               }}
-            />
+              animate={{
+                rotate: [0, 360],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: Math.random() * 15 + 15,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              <div
+                className={`w-12 h-12 ${i % 3 === 0 ? 'bg-primary-500/8' : i % 3 === 1 ? 'bg-secondary-500/8' : 'bg-accent-500/8'} 
+                  ${i % 2 === 0 ? 'rounded-full' : 'rounded-lg rotate-45'}`}
+              />
+            </motion.div>
           ))}
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div 
-            className="text-center mb-12"
+          <motion.div
+            className="text-center mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <h2 
-              className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent inline-block"
-            >
+            <h2 className="heading-md mb-4">
               {t('home.projects.title')}
             </h2>
-            <p 
-              className="mt-4 text-lg text-foreground-light/70 dark:text-foreground-dark/70 max-w-2xl mx-auto"
-            >
+            <p className="text-lg text-text-secondary max-w-2xl mx-auto">
               {t('home.projects.subtitle')}
             </p>
-          </div>
+          </motion.div>
 
-          {/* Carrusel 3D de proyectos */}
-          <div className="relative overflow-hidden w-full py-12">
-            <div className="w-full max-w-5xl mx-auto relative perspective-1000 h-[500px]">
-              {/* Botón de navegación izquierdo */}
-              <button 
+          {/* Enhanced 3D Carousel */}
+          <div className="relative overflow-hidden w-full py-8">
+            <div className="w-full max-w-5xl mx-auto relative perspective-1000 h-[400px]">
+              {/* Navigation Buttons */}
+              <motion.button
                 onClick={prevSlide}
                 disabled={isRotating}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-black border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors disabled:opacity-50 shadow-lg"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 p-4 rounded-full glass backdrop-blur-md bg-white/20 border border-white/30 hover:bg-white/30 transition-all disabled:opacity-50 shadow-2xl group"
                 aria-label="Proyecto anterior"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary-600 group-hover:text-primary-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
-              </button>
+              </motion.button>
 
-              {/* Botón de navegación derecho */}
-              <button 
+              <motion.button
                 onClick={nextSlide}
                 disabled={isRotating}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 p-3 rounded-full bg-white dark:bg-black border border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors disabled:opacity-50 shadow-lg"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 p-4 rounded-full glass backdrop-blur-md bg-white/20 border border-white/30 hover:bg-white/30 transition-all disabled:opacity-50 shadow-2xl group"
                 aria-label="Proyecto siguiente"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary-600 group-hover:text-primary-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </button>
+              </motion.button>
 
               <div className="absolute inset-0 flex items-center justify-center">
-                {/* Carrusel 3D */}
-                <div 
-                  className="relative w-full h-full flex items-center justify-center"
-                  style={{
-                    perspective: '1500px',
-                    transformStyle: 'preserve-3d',
-                    transition: 'transform 0.4s ease'
-                  }}
-                >
-                  {projectsData.map((project, index) => {
-                    // Calcular la posición de cada tarjeta en el carrusel 3D
-                    let position = index - currentIndex;
-                    
-                    // Ajustar para el efecto circular
-                    if (position < -1) {
-                      position += projectsData.length;
-                    } else if (position > 1) {
-                      position -= projectsData.length;
-                    }
-                    
-                    // Calcular las transformaciones 3D
-                    const rotateY = position * 45; // Rotación en el eje Y
-                    const translateZ = position === 0 ? 0 : -300; // Profundidad
-                    const translateX = position * 350; // Posición horizontal
-                    const scale = position === 0 ? 1 : 0.8; // Escala
-                    const opacity = position === 0 ? 1 : 0.7; // Opacidad
-                    const zIndex = position === 0 ? 10 : 5; // z-index
-                    
-                    return (
-                      <div 
-                        key={project.id}
-                        className="absolute w-full max-w-md transition-all duration-100 ease-in-out"
-                        style={{
-                          transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
-                          opacity,
-                          zIndex,
-                          transition: 'all 0.4s ease'
-                        }}
-                      >
-                        <ProjectCard 
-                          id={project.id}
-                          title={project.title}
-                          description={project.description}
-                          image={project.image}
-                          category={project.category}
-                          technologies={project.technologies}
-                          url={project.url}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    className="relative w-full h-full flex items-center justify-center"
+                    style={{
+                      perspective: '2000px',
+                      transformStyle: 'preserve-3d',
+                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {projectsData.map((project, index) => {
+                      let position = index - currentIndex;
+
+                      if (position < -1) {
+                        position += projectsData.length;
+                      } else if (position > 1) {
+                        position -= projectsData.length;
+                      }
+
+                      const rotateY = position * 40;
+                      const translateZ = position === 0 ? 100 : -200;
+                      const translateX = position * 400;
+                      const scale = position === 0 ? 1.1 : 0.8;
+                      const opacity = position === 0 ? 1 : 0.6;
+                      const zIndex = position === 0 ? 20 : 10;
+
+                      return (
+                        <motion.div
+                          key={project.id}
+                          className="absolute w-full max-w-md"
+                          style={{
+                            transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                            opacity,
+                            zIndex,
+                          }}
+                          animate={{
+                            transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                          }}
+                          transition={{
+                            duration: 0.5,
+                            ease: "easeInOut",
+                          }}
+                          whileHover={position === 0 ? {
+                            scale: 1.05,
+                            transition: { duration: 0.2 }
+                          } : {}}
+                        >
+                          <div className="relative">
+                            {position === 0 && (
+                              <motion.div
+                                className="absolute -inset-2 bg-gradient-to-r from-primary-500/15 via-secondary-500/15 to-accent-500/15 rounded-2xl blur-lg"
+                                animate={{
+                                  scale: [1, 1.02, 1],
+                                  opacity: [0.3, 0.5, 0.3],
+                                }}
+                                transition={{
+                                  duration: 4,
+                                  repeat: Infinity,
+                                  ease: "easeInOut",
+                                }}
+                              />
+                            )}
+                            <ProjectCard
+                              id={project.id}
+                              title={project.title}
+                              description={project.description}
+                              image={project.image}
+                              category={project.category}
+                              technologies={project.technologies}
+                              url={project.url}
+                            />
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
 
-            {/* Indicadores de navegación */}
-            <div className="flex justify-center mt-8 space-x-3">
+            {/* Navigation Indicators */}
+            <div className="flex justify-center mt-6 space-x-3">
               {projectsData.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
                   onClick={() => {
                     if (isRotating) return;
@@ -320,165 +444,336 @@ const Home = () => {
                     setTimeout(() => setIsRotating(false), 600);
                   }}
                   disabled={isRotating}
-                  className={`w-4 h-4 rounded-full transition-all ${index === currentIndex ? 'bg-black dark:bg-white scale-125' : 'bg-gray-300 dark:bg-gray-600'} disabled:opacity-50`}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === currentIndex
+                    ? 'bg-gradient-to-r from-primary-500 to-secondary-500 scale-125'
+                    : 'bg-gray-300 hover:bg-gray-400'
+                    } disabled:opacity-50`}
                   aria-label={`Ir al proyecto ${index + 1}`}
+                  whileHover={{ scale: index === currentIndex ? 1.25 : 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                 />
               ))}
             </div>
-            
-            <div className="text-center mt-6">
-              <Button to={projectsData[currentIndex].url} variant="primary" size="md" className="bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200">
-                Ver proyecto
-              </Button>
-            </div>
-          </div>
 
-          <div 
-            className="text-center mt-12"
-          >
-            <div>
-              <Button 
-                to="/projects" 
-                variant="primary" 
-                size="lg"
-                className="py-3 px-8 text-lg relative overflow-hidden group"
+            <motion.div
+              className="text-center mt-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Button
+                to="/projects"
+                className="btn-primary"
               >
-                <span 
-                  className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100"
-                />
                 {t('home.projects.viewAll')}
               </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
----
+      ---
 
       {/* Video Demo Section */}
-      <section 
-        className="py-16 sm:py-24 bg-gradient-to-b from-subtle-light to-white dark:from-subtle-dark dark:to-background-dark relative overflow-hidden"
-        id="video-demo" 
+      <motion.section
+        className="section bg-gradient-to-br from-secondary-50/50 via-accent-50/30 to-primary-50/50 relative overflow-hidden"
+        id="video-demo"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
       >
-        {/* Elementos decorativos de fondo */}
-        <div 
-          className="absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none"
-        >
-          <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
-             <defs>
-              <pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeOpacity="0.1" strokeWidth="0.5"/>
-              </pattern>
-              <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
-                <rect width="100" height="100" fill="url(#smallGrid)"/>
-                <path d="M 100 0 L 0 0 0 100" fill="none" stroke="currentColor" strokeOpacity="0.2" strokeWidth="1"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-primary-400/20 to-secondary-400/20 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-accent-400/20 to-primary-400/20 rounded-full blur-3xl"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              rotate: [360, 180, 0],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div 
-            className="text-center mb-12"
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <h2 
-              className="text-3xl md:text-4xl font-bold"
-            >
+            <h2 className="heading-lg mb-6">
               {t('home.videoDemo.title')}
             </h2>
-            <p 
-              className="mt-4 text-lg text-foreground-light/70 dark:text-foreground-dark/70 max-w-2xl mx-auto"
-            >
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
               {t('home.videoDemo.subtitle')}
             </p>
-          </div>
-          
-          <div 
-            className="relative aspect-video  max-w-4xl mx-auto"
+          </motion.div>
+
+          <motion.div
+            className="relative aspect-video max-w-5xl mx-auto"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
           >
-            {/* Efecto de brillo en los bordes */}
-            <div 
-              className="absolute -inset-1  from-primary via-accent to-primary rounded-xl blur-sm opacity-70 z-0"
-            />
-            
-            <div className="relative z-10 rounded-xl overflow-hidden">
-              {/* 🏆 SOLUCIÓN PARA EL VIDEO: Etiqueta <video> con las propiedades de Autoplay */}
-              <video 
-                ref={videoRef} // ⬅️ Conecta con la lógica de useEffect
-                src={DEMO_VIDEO_PATH} // ⬅️ Usa la ruta de tu video
-                className="w-full h-full object-cover"
-                controls={false} 
-                muted // ⬅️ ¡ESENCIAL! Permite el autoplay en navegadores
-                loop
-                playsInline // Mejora la compatibilidad en iOS
-              >
-                Tu navegador no soporta el elemento de video.
-              </video>
+            {/* Glowing Border Effect */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 rounded-2xl blur-sm opacity-75" />
+
+            <div className="relative bg-white rounded-2xl overflow-hidden shadow-2xl">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-secondary-500/10"
+                animate={{
+                  opacity: [0.5, 0.8, 0.5],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+
+              <VideoPlayer
+                youtubeId="WPKjrxEI4Ko"
+                title="Soluciones Mike - Demo de Proyectos"
+                thumbnail="https://img.youtube.com/vi/WPKjrxEI4Ko/maxresdefault.jpg"
+                className="relative z-10"
+              />
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
-      
----
+      </motion.section>
+
+      ---
 
       {/* Testimonials Section */}
-      <Section className="py-16 sm:py-24 bg-subtle-light dark:bg-subtle-dark" id="testimonials">
-        <div className="container mx-auto px-4 md:px-6">
-          <div 
+      <motion.section
+        className="section bg-gradient-to-b from-primary-50/30 to-secondary-50/30 relative overflow-hidden"
+        id="testimonials"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 25% 25%, #0ea5e9 0%, transparent 50%), 
+                             radial-gradient(circle at 75% 75%, #d946ef 0%, transparent 50%)`,
+          }} />
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <motion.div
             className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('home.testimonials.title')}</h2>
-            <p className="text-lg max-w-3xl mx-auto">{t('home.testimonials.subtitle')}</p>
-          </div>
+            <h2 className="heading-lg mb-6">{t('home.testimonials.title')}</h2>
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">{t('home.testimonials.subtitle')}</p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((index) => (
-              <div
+            {[
+              {
+                name: "Juan Pérez",
+                company: "Empresa ABC",
+                text: "Excelente trabajo, superó todas mis expectativas. El sitio web quedó perfecto y en tiempo récord.",
+                rating: 5
+              },
+              {
+                name: "María García",
+                company: "Startup XYZ",
+                text: "La mejor inversión que hemos hecho. Nuestras ventas aumentaron un 30% desde que lanzamos la nueva web.",
+                rating: 5
+              },
+              {
+                name: "Carlos Rodríguez",
+                company: "Corporación 123",
+                text: "Profesionalismo y calidad en cada detalle. Recomiendo ampliamente sus servicios.",
+                rating: 5
+              }
+            ].map((testimonial, index) => (
+              <motion.div
                 key={index}
-                className="bg-card-light dark:bg-card-dark rounded-lg shadow-lg p-8"
+                className="card group hover:shadow-2xl"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
               >
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 rounded-full mr-4 overflow-hidden">
-                    <img 
-                      src={`https://randomuser.me/api/portraits/${index % 2 === 0 ? 'men' : 'women'}/${index + 10}.jpg`} 
-                      alt={`Cliente ${index}`} 
-                      className="w-full h-full object-cover"
-                    />
+                {/* Gradient Border Effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
+
+                <div className="relative bg-white rounded-2xl p-8">
+                  {/* Stars Rating */}
+                  <div className="flex mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <motion.svg
+                        key={i}
+                        className="w-5 h-5 text-accent-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3, delay: index * 0.1 + i * 0.1 }}
+                        viewport={{ once: true }}
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </motion.svg>
+                    ))}
                   </div>
-                  <div>
-                    <h4 className="font-bold">{index === 1 ? "Juan Pérez" : index === 2 ? "María García" : "Carlos Rodríguez"}</h4>
-                    <p className="text-sm text-foreground-light/70 dark:text-foreground-dark/70">{index === 1 ? "Empresa ABC" : index === 2 ? "Startup XYZ" : "Corporación 123"}</p>
+
+                  <blockquote className="text-text-primary mb-6 text-lg leading-relaxed italic">
+                    "{testimonial.text}"
+                  </blockquote>
+
+                  <div className="flex items-center">
+                    <motion.div
+                      className="w-14 h-14 rounded-full mr-4 overflow-hidden bg-gradient-to-br from-primary-400 to-secondary-400 p-0.5"
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <img
+                        src={`https://randomuser.me/api/portraits/${index % 2 === 0 ? 'men' : 'women'}/${index + 10}.jpg`}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover rounded-full bg-white"
+                      />
+                    </motion.div>
+                    <div>
+                      <h4 className="font-bold text-text-primary text-lg">{testimonial.name}</h4>
+                      <p className="text-text-secondary">{testimonial.company}</p>
+                    </div>
                   </div>
                 </div>
-                <p className="text-foreground-light/80 dark:text-foreground-dark/80 italic">"{index === 1 ? "Excelente trabajo, superó todas mis expectativas. El sitio web quedó perfecto y en tiempo récord." : index === 2 ? "La mejor inversión que hemos hecho. Nuestras ventas aumentaron un 30% desde que lanzamos la nueva web." : "Profesionalismo y calidad en cada detalle. Recomiendo ampliamente sus servicios."}"</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </Section>
+      </motion.section>
 
----
+      ---
 
       {/* CTA Section */}
-      <Section className="py-12" id="cta">
-        <div className="container mx-auto px-4 md:px-6">
-          <div 
-            className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 md:p-12 text-white text-center"
+      <motion.section
+        className="section relative overflow-hidden"
+        id="cta"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <motion.div
+            className="relative bg-gradient-to-br from-primary-600 via-secondary-600 to-accent-600 rounded-3xl p-12 md:p-16 text-white text-center overflow-hidden"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('home.cta.title')}</h2>
-            <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">{t('home.cta.subtitle')}</p>
-            <Button 
-              to="/contact" 
-              variant="light" 
-              size="lg"
-              className="inline-block"
-            >
-              {t('home.cta.button')}
-            </Button>
-          </div>
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(10)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute rounded-full bg-white/10"
+                  style={{
+                    width: `${Math.random() * 100 + 20}px`,
+                    height: `${Math.random() * 100 + 20}px`,
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    y: [0, -20, 0],
+                    opacity: [0.3, 0.8, 0.3],
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: Math.random() * 3 + 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </div>
+
+            <div className="relative z-10">
+              <motion.h2
+                className="text-4xl md:text-6xl font-bold mb-6 font-display"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                {t('home.cta.title')}
+              </motion.h2>
+
+              <motion.p
+                className="text-xl md:text-2xl mb-10 max-w-4xl mx-auto leading-relaxed opacity-90"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                {t('home.cta.subtitle')}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                viewport={{ once: true }}
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              >
+                <Button
+                  to="/contact"
+                  className="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                >
+                  {t('home.cta.button')}
+                </Button>
+
+                <Button
+                  to="/projects"
+                  className="border-2 border-white text-white hover:bg-white hover:text-primary-600 px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
+                >
+                  Ver Proyectos
+                </Button>
+              </motion.div>
+            </div>
+
+            {/* Decorative Elements */}
+            <motion.div
+              className="absolute top-4 right-4 w-20 h-20 border-2 border-white/30 rounded-full"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            />
+            <motion.div
+              className="absolute bottom-4 left-4 w-16 h-16 border-2 border-white/30 rounded-lg"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            />
+          </motion.div>
         </div>
-      </Section>
+      </motion.section>
     </div>
   );
 };

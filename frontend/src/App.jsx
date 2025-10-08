@@ -20,7 +20,14 @@ const NotFound = () => <div className="container mx-auto p-8">404 - Page Not Fou
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+      <Suspense fallback={
+        <div className="flex items-center justify-center h-screen bg-gradient-to-br from-primary-50 to-secondary-50">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-xl font-semibold text-primary-600">Cargando...</p>
+          </div>
+        </div>
+      }>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -31,12 +38,14 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="/paginas_simples" element={<LayoutNoFooter />}>
-            <Route path="abogado" element={<Abogado />} />
-            <Route path="barberia" element={<Barberia />} />
+          <Route path="/paginas_simples/abogado" element={<LayoutNoFooter />}>
+            <Route index element={<Abogado />} />
           </Route>
-          <Route path="/paginas_simples" element={<LayoutEmpty />}>
-            <Route path="restaurante" element={<Restaurante />} />
+          <Route path="/paginas_simples/barberia" element={<LayoutNoFooter />}>
+            <Route index element={<Barberia />} />
+          </Route>
+          <Route path="/paginas_simples/restaurante" element={<LayoutEmpty />}>
+            <Route index element={<Restaurante />} />
           </Route>
         </Routes>
       </Suspense>

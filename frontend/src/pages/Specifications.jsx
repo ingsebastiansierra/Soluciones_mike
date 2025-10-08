@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Section from '../components/ui/Section';
 
 // Variantes para la animación de texto letra por letra
@@ -20,15 +20,7 @@ const letterVariants = {
 const Specifications = () => {
   const { t } = useTranslation();
   
-  // Referencias y efectos para el parallax
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   
   // Función para animar el texto letra por letra
   const AnimatedText = ({ text, className }) => {
@@ -55,9 +47,7 @@ const Specifications = () => {
       {/* Hero Section */}
       <Section className="py-32 relative overflow-hidden" id="specs-hero">
         <motion.div 
-          ref={heroRef}
-          className="absolute inset-0 w-full h-full z-0" 
-          style={{ y, opacity }}
+          className="absolute inset-0 w-full h-full z-0"
         >
           <div className="absolute top-20 right-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
           <div className="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />

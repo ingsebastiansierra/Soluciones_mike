@@ -17,9 +17,10 @@ const ProjectCard = ({ id, titleKey, title, descriptionKey, description, image, 
   const spotlightY = useMotionValue(0);
   const spotlightBackground = useMotionTemplate`
     radial-gradient(
-      650px circle at ${spotlightX}px ${spotlightY}px,
-      rgba(var(--color-accent-rgb), 0.15),
-      transparent 80%
+      400px circle at ${spotlightX}px ${spotlightY}px,
+      rgba(14, 165, 233, 0.15),
+      rgba(217, 70, 239, 0.1),
+      transparent 70%
     )
   `;
   
@@ -86,7 +87,7 @@ const ProjectCard = ({ id, titleKey, title, descriptionKey, description, image, 
   return (
     <motion.div
       ref={cardRef}
-      className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg relative"
+      className="card group cursor-pointer relative overflow-hidden h-full"
       variants={cardVariants}
       initial="initial"
       animate="animate"
@@ -96,165 +97,164 @@ const ProjectCard = ({ id, titleKey, title, descriptionKey, description, image, 
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleClick}
     >
+      {/* Gradient Border Effect */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+      
       {/* Spotlight effect */}
       <motion.div 
-        className="pointer-events-none absolute inset-0 z-10 transition duration-300"
+        className="pointer-events-none absolute inset-0 z-10 transition duration-300 rounded-2xl"
         style={{ background: spotlightBackground }}
       />
       
-      {/* Imagen del proyecto */}
-      <motion.div 
-        className="relative overflow-hidden group h-64 w-full"
-        style={{ 
-          position: "relative",
-          top: 0,
-          left: 0
-        }}
-      >
-        {/* Imagen del proyecto con animación */}
-        <motion.div
-          className="w-full h-full"
-          animate={{
-            scale: isHovered ? 1.08 : 1
-          }}
-          transition={{ 
-            duration: 0.6, 
-            ease: [0.22, 1, 0.36, 1] 
-          }}
+      <div className="relative bg-white rounded-2xl overflow-hidden h-full flex flex-col">
+        {/* Imagen del proyecto */}
+        <motion.div 
+          className="relative overflow-hidden h-48 w-full"
         >
-          <img 
-            src={image} 
-            alt="Imagen del proyecto" 
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+          {/* Imagen del proyecto con animación */}
+          <motion.div
+            className="w-full h-full"
+            animate={{
+              scale: isHovered ? 1.1 : 1
             }}
-          />
-        </motion.div>
-        
-        {/* Overlay con categoría */}
-        <motion.div 
-          className="absolute top-4 left-4 z-20"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          <span className="bg-accent text-white text-xs px-3 py-1.5 rounded-md font-medium">
-            {category === 'simple' ? 'Sitio Web Simple' : 
-             category === 'corporate' ? 'Sitio Web Corporativo' : 
-             category === 'custom' ? 'Sitio Web Personalizado' : category}
-          </span>
-        </motion.div>
-        
-        {/* Overlay oscuro al hacer hover con animación */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10"
-          initial={{ opacity: 0.3 }}
-          animate={{ opacity: isHovered ? 0.6 : 0.3 }}
-          transition={{ duration: 0.3 }}
-        />
-        
-        {/* Texto superpuesto en la imagen que aparece al hacer hover */}
-        <motion.div 
-          className="absolute bottom-0 left-0 right-0 p-4 text-white z-20"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ 
-            opacity: isHovered ? 1 : 0, 
-            y: isHovered ? 0 : 20 
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.div 
-            variants={contentVariants}
-            initial="initial"
-            animate="animate"
+            transition={{ 
+              duration: 0.6, 
+              ease: [0.22, 1, 0.36, 1] 
+            }}
           >
-            {technologies && technologies.length > 0 && (
-              <div className="flex flex-wrap gap-2 mb-2">
-                {technologies.map((tech, index) => (
-                  <span 
-                    key={index} 
-                    className="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            )}
+            <img 
+              src={image} 
+              alt="Imagen del proyecto" 
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+              }}
+            />
+          </motion.div>
+          
+          {/* Overlay con categoría */}
+          <motion.div 
+            className="absolute top-4 left-4 z-20"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
+          >
+            <span className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow-lg">
+              {category === 'simple' ? 'Simple' : 
+               category === 'corporate' ? 'Corporativo' : 
+               category === 'custom' ? 'Personalizado' : category}
+            </span>
+          </motion.div>
+          
+          {/* Overlay oscuro al hacer hover con animación */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+          />
+          
+          {/* Botón de acción que aparece al hacer hover */}
+          <motion.div 
+            className="absolute inset-0 flex items-center justify-center z-20"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ 
+              opacity: isHovered ? 1 : 0, 
+              scale: isHovered ? 1 : 0.8 
+            }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.button
+              className="bg-white text-primary-600 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Ver Proyecto
+            </motion.button>
           </motion.div>
         </motion.div>
-      </motion.div>
 
 
-      
-      <div className="p-6">
-        <motion.h3 
-          className="text-xl font-bold mb-2"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          {title || t(titleKey) || `Proyecto ${id}`}
-        </motion.h3>
         
-        <motion.p 
-          className="text-gray-600 dark:text-gray-300 mb-4"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          {description || t(descriptionKey) || `Descripción del proyecto ${id}`}
-        </motion.p>
-        
-        <motion.div 
-          className="flex justify-between items-center"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+        {/* Contenido del proyecto */}
+        <div className="p-6 flex-grow flex flex-col">
+          <motion.h3 
+            className="text-xl font-bold mb-3 text-text-primary group-hover:text-primary-600 transition-colors"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            {title || t(titleKey) || `Proyecto ${id}`}
+          </motion.h3>
+          
+          <motion.p 
+            className="text-text-secondary mb-4 leading-relaxed flex-grow"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            {description || t(descriptionKey) || `Descripción del proyecto ${id}`}
+          </motion.p>
+          
+          {/* Tecnologías utilizadas */}
+          <motion.div 
+            className="flex flex-wrap gap-2 mb-4"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            {technologies && technologies.slice(0, 3).map((tech, index) => (
+              <motion.span 
+                key={index}
+                className="text-xs bg-primary-100 text-primary-700 px-3 py-1 rounded-full font-medium"
+                whileHover={{ scale: 1.1 }}
+              >
+                {tech}
+              </motion.span>
+            ))}
+            {technologies && technologies.length > 3 && (
+              <span className="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full font-medium">
+                +{technologies.length - 3}
+              </span>
+            )}
+          </motion.div>
+          
+          {/* Botón de acción */}
+          <motion.div 
+            className="mt-auto"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
             {url ? (
-              <a 
+              <motion.a 
                 href="#"
-                className="text-accent hover:text-accent/80 font-medium transition-colors"
+                className="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold transition-colors group"
                 onClick={(e) => {
                   e.preventDefault();
                   window.open(url, '_blank');
                 }}
+                whileHover={{ x: 5 }}
               >
-                Ver proyecto →
-              </a>
+                Ver proyecto 
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </motion.a>
             ) : (
               <Link 
                 to={`/projects/${id}`}
-                className="text-accent hover:text-accent/80 font-medium transition-colors"
+                className="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold transition-colors group"
               >
-                Ver proyecto →
+                Ver detalles
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </Link>
             )}
           </motion.div>
-          
-          {/* Tecnologías utilizadas */}
-          <div className="flex space-x-2">
-            {technologies.slice(0, 3).map((tech, index) => (
-              <span 
-                key={index}
-                className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded"
-              >
-                {tech}
-              </span>
-            ))}
-            {technologies.length > 3 && (
-              <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded">
-                +{technologies.length - 3}
-              </span>
-            )}
-          </div>
-        </motion.div>
+        </div>
       </div>
     </motion.div>
   );

@@ -8,7 +8,7 @@ const Section = ({
   dark = false,
 }) => {
   // Clases base para la sección
-  const sectionClasses = `py-8 md:py-16 ${dark ? 'bg-dark-bg text-text-light' : 'bg-light-bg text-text-primary'} ${className}`;
+  const sectionClasses = `section ${dark ? 'bg-bg-dark text-text-light' : 'bg-bg-light text-text-primary'} ${className}`;
 
   // Contenido de la sección
   const content = (
